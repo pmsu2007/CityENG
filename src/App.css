@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'NanumGothicRegular';
+  src: url('./assets/fonts/NanumGothic-Bold.ttf');
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-style {
+  font-family: 'NanumGothicRegular', sans-serif;
+  color: black;
+  position: relative;
+  width: 100%;
+}
+
 .App {
   text-align: center;
 }
