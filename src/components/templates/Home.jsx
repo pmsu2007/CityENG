@@ -1,4 +1,5 @@
 import DailyInventory from "../organisms/home/DailyInventory";
+import HomeMenu from "../organisms/home/HomeMenu";
 import InventorySearch from "../organisms/home/InventorySearch";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <DailyInventory />
       <InventorySearch />
+      <HomeMenu />
     </>
   );
 };

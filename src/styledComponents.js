@@ -14,8 +14,17 @@ export const MainPageInnerDiv = styled.div`
   align-items: center;
   width: calc(100% - 40px);
   height: auto;
-  margin-top: 70px;
+  margin: 70px 0;
 `;
+
+// Common ======================================
+
+export const HorizontalLine = styled.hr`
+  width: 90%;
+  maring-bottom: 30px;
+`
+
+
 // Entry =======================================
 export const EntryDiv = styled.div`
   display: flex;
@@ -23,13 +32,70 @@ export const EntryDiv = styled.div`
 `;
 
 export const EntryLogoImg = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 270px;
+  height: 270px;
 `;
 
-// Login =======================================
+// Account =======================================
 
-export const LoginDiv = styled.div``;
+export const LoginDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export const LoginInputDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin-bottom: 35px;
+  align-items: center;
+`
+
+export const LoginInput = styled.input`
+  width: 55%;
+  height: auto;
+  line-height: normal;
+  padding: .8em .5em;
+  border: none;
+  background-color: #eee;
+  font-size: 14px;
+  border-radius: 24px;
+  &:focus {
+    outline: none;
+  }
+`
+
+export const LoginLabel = styled.label`
+  font-size: 14px;
+  width: 55px;
+`
+
+export const LoginButton = styled.div`
+  width: 40%;
+  text-align: center;
+  background-color: #484848;
+  color: white;
+  font-size: 14px;
+  border-radius: 24px;
+  border:3px solid #484848;
+  padding: 10px 0;
+  transition: 0.5s;
+
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+
+  margin-bottom: 10px;
+`
+
+export const RegisterButton = styled.div`
+  font-size: 14px;
+  text-decoration: underline;
+`
+
 
 // Header ======================================
 
@@ -39,7 +105,9 @@ export const HeaderDiv = styled.div`
   height: 50px;
   position: fixed;
   padding: 15px 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid black;
+  background-color: white;
+  z-index: 10;
 `;
 
 export const HeaderTitle = styled.div`
@@ -50,8 +118,8 @@ export const HeaderTitle = styled.div`
 
 export const NavigationListDiv = styled.div`
   box-sizing: border-box;
-  width: 100%px;
-  height: 50px;
+  width: 100%;
+  height: 55px;
   position: fixed;
   padding: 10px 15px;
   bottom: 0;
@@ -60,7 +128,9 @@ export const NavigationListDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #eee;
+  border-top: 2px solid black;
+  background-color: white;
+  z-index: 10;
 `;
 
 export const NavigationBtnDiv = styled.div`
@@ -68,8 +138,11 @@ export const NavigationBtnDiv = styled.div`
   width: calc(100% / 4);
   height: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 0 3px;
 `;
 
 // Home ==========================================
@@ -80,6 +153,7 @@ export const DailyInventoryDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 120px;
+  border: 2px solid black;
   border-radius: 10px;
   background-color: #eee;
   display: flex;
@@ -123,11 +197,56 @@ export const InventorySearchDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 60px;
+  border: 2px solid black;
   border-radius: 10px;
   background-color: #eee;
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   margin-bottom: 20px;
 `;
 
-export const InventorySearchInput = styled.input``;
+export const InventorySearchInput = styled.input`
+  width: 75%;
+  height: auto;
+  line-height: normal;
+  padding: .8em .8em;
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  border-radius: 24px;
+  &:focus {
+    outline: none;
+  }
+`;
 export const InventorySearchLabel = styled.label``;
+
+// == HomeMenu
+
+export const HomeMenuDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HomeMenuItemDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100% / 5);
+  display: flex;
+  align-items: center;
+`
+
+export const HomeMenuIcon = styled.div`
+  width: 35px;
+  text-align: center;
+`
+
+export const HomeMenuText = styled.div`
+  margin-left: 20px;
+`

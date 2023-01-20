@@ -1,17 +1,19 @@
-import {
-  NavigationListDiv,
-  NavigationItemDiv,
-} from "../../../styledComponents";
+import { NavigationListDiv } from "../../../styledComponents";
 import NavigationBtn from "../../atomics/common/NavigationBtn";
-
+import {
+  faArrowRightArrowLeft,
+  faBox,
+  faGear,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 const Navigation = () => {
   return (
     <>
       <NavigationListDiv>
-        <NavigationBtn text="홈" />
-        <NavigationBtn text="제품" />
-        <NavigationBtn text="입고" />
-        <NavigationBtn text="설정" />
+        <NavigationBtn icon={faHouse} />
+        <NavigationBtn icon={faBox} />
+        <NavigationBtn icon={faArrowRightArrowLeft} />
+        <NavigationBtn icon={faGear} />
       </NavigationListDiv>
     </>
   );

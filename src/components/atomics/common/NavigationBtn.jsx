@@ -1,9 +1,14 @@
 import { NavigationBtnDiv } from "../../../styledComponents";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NavigationBtn = ({ text, onClick }) => {
+
+
+const NavigationBtn = ({ icon, onClick }) => {
   return (
     <>
-      <NavigationBtnDiv>{text}</NavigationBtnDiv>
+      <NavigationBtnDiv>
+        <FontAwesomeIcon icon={icon} size="lg"/>
+      </NavigationBtnDiv>
     </>
   );
 };
