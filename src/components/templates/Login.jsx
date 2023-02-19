@@ -4,16 +4,16 @@ import {
   LoginInput,
   LoginInputDiv,
   LoginLabel,
-  RegisterButton,
+  GoRegisterButton,
 } from "../../styledComponents";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate('/home');
+    navigate('/teams');
   }
 
   const goRegister = () => {
@@ -41,7 +41,7 @@ const Login = () => {
         </LoginInputDiv>
         <LoginButton onClick={goHome}>로그인</LoginButton>
 
-        <RegisterButton onClick={goRegister}>회원가입</RegisterButton>
+        <GoRegisterButton onClick={goRegister}>회원가입</GoRegisterButton>
       </LoginDiv>
     </>
   );

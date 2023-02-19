@@ -1,10 +1,10 @@
-import { HeaderDiv, HeaderTitle } from "../../../styledComponents";
+import { HeaderDiv, HeaderTitle, HeaderButton } from "../../../styledComponents";
 
-const Header = () => {
+const Header = ({text}) => {
   return (
     <>
       <HeaderDiv>
-        <HeaderTitle>도시 ENG</HeaderTitle>
+        <HeaderTitle>{text}</HeaderTitle>
       </HeaderDiv>
     </>
   );

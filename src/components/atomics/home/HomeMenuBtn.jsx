@@ -1,14 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import {
   HomeMenuIcon,
   HomeMenuItemDiv,
   HomeMenuText,
 } from "../../../styledComponents";
 
-const HomeMenuBtn = ({ icon, text }) => {
+const HomeMenuBtn = ({ icon, text, filter }) => {
+  
+  const navigate = useNavigate();
+  const goUpload = () => {
+    navigate(`/upload/${filter}`)
+  }
+
+
   return (
     <>
-      <HomeMenuItemDiv>
+      <HomeMenuItemDiv onClick={goUpload}>
         <HomeMenuIcon>
           <FontAwesomeIcon icon={icon} />
         </HomeMenuIcon>

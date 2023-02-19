@@ -1,12 +1,15 @@
+import { useParams } from "react-router-dom";
 import DailyInventory from "../organisms/home/DailyInventory";
 import HomeMenu from "../organisms/home/HomeMenu";
-import InventorySearch from "../organisms/home/InventorySearch";
+import PlaceMenu from "../organisms/home/PlaceMenu";
 
 const Home = () => {
+
+  const param = useParams();
   return (
     <>
       <DailyInventory />
-      <InventorySearch />
+      <PlaceMenu id={param.team_id}/>
       <HomeMenu />
     </>
   );

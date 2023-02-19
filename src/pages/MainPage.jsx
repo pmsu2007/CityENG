@@ -1,8 +1,6 @@
-import Navigation from "../components/organisms/common/Navigation";
 import { Outlet, useLocation } from "react-router-dom";
-import { MainPageDiv, MainPageInnerDiv } from "../styledComponents";
+import { MainPageDiv } from "../styledComponents";
 import ShowEntry from "./ShowEntry";
-import Header from "../components/organisms/common/Header";
 
 const MainPage = () => {
   const location = useLocation();
@@ -14,11 +12,7 @@ const MainPage = () => {
           <ShowEntry />
         ) : (
           <>
-            <Header />
-            <MainPageInnerDiv>
-              <Outlet />
-              <Navigation />
-            </MainPageInnerDiv>
+            <Outlet />
           </>
         )}
       </MainPageDiv>
