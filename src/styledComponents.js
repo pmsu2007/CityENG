@@ -490,6 +490,7 @@ export const FilterInventoryDiv = styled.div`
 export const InventoryFilterDiv = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const InventoryFilterBtn = styled.div`
@@ -518,6 +519,18 @@ export const InventoryFilterItemDiv = styled.div`
   text-align: center;
 `;
 
+export const InventoryFilterSelect = styled.select`
+  width: 68%;
+  padding: 0.6em 0.6em;
+  background-color: #eee;
+  border-radius: 12px;
+  border: 2px solid black;
+  font-size: 14px;
+  margin-bottom: 10px;
+`;
+export const InventoryFilterOption = styled.option``;
+
+
 export const InventoryFilterInputDiv = styled.div`
   display: flex;
   // justify-content: center;
@@ -529,7 +542,7 @@ export const InventoryFilterInput = styled.input`
   height: auto;
   line-height: normal;
   padding: 0.8em 0.8em;
-  border: none;
+  border: 2px solid black;
   background-color: #eee;
   font-size: 12px;
   border-radius: 12px;
@@ -539,6 +552,186 @@ export const InventoryFilterInput = styled.input`
   margin-right: 10px;
 `;
 
+export const InventoryListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const InventoryItemDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+`;
+
+export const InventoryItemImg = styled.img`
+  width: 60px;
+  height: 60px;
+`
+
+export const InventoryItemInfoDiv = styled.div`
+  width: 67%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 10px;
+`
+
+export const InventoryItemInfoInnerDiv = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const InventoryItemQuantityDiv = styled.div`
+  color: #4F67FF;
+`
+
+// Attribute =====================================
+
+export const AttrDiv = styled.div`
+  width: 100%;
+  margin-top: 70px;
+`;
+
+export const AttrListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const AttrAddButton = styled.div`
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 35px;
+  box-sizing: border-box;
+  background-color: #484848;
+  border-radius: 12px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 36px;
+  color: white;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+`;
+
+export const AttrInputDiv = styled.div`
+  box-sizing: border-box;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: 110px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 5px 15px;
+`;
+
+export const AttrInnerInputDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const AttrInput = styled.input`
+  width: 90%;
+  line-height: normal;
+  padding: 0.8em 0.8em;
+  background-color: white;
+  font-size: 12px;
+  border-radius: 12px;
+  &:focus {
+    outline: none;
+  }
+  margin-bottom: 10px;
+`;
+
+export const AttrSelect = styled.select`
+  width: 68%;
+  padding: 0.6em 0.6em;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px solid black;
+  font-size: 14px;
+`;
+export const AttrOption = styled.option``;
+
+export const AttrSelectBtn = styled.div`
+  padding: 0.8em 0.8em;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 12px;
+  font-size: 14px;
+  width: 65%;
+`;
+
+export const AttrTypeListDiv = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  padding: 10px 0;
+  position: fixed;
+`;
+
+export const AttrTypeItemDiv = styled.div`
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+`;
+
+export const AttrInputButton = styled.div`
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+`;
+
+export const AttrItemDiv = styled.div`
+  box-sizing: border-box;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 5px 15px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+`;
+
+export const AttrItemNameDiv = styled.div`
+  width: 45%;
+`;
+
+export const AttrItemTypeDiv = styled.div`
+  width: 45%;
+`;
+
+export const AttrItemSettingDiv = styled.div``;
 // Upload ========================================
 
 export const UploadPageInnerDiv = styled.div`
@@ -550,15 +743,13 @@ export const UploadPageInnerDiv = styled.div`
   margin: 70px 0;
 `;
 
-// == Inventory
-
-export const UploadInventoryInputDiv = styled.div`
+export const UploadInputDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-export const UploadInventoryInputInnerDiv = styled.div`
+export const UploadInputInnerDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -566,18 +757,91 @@ export const UploadInventoryInputInnerDiv = styled.div`
   padding: 10px 10px;
 `;
 
-export const UploadInventoryInput = styled.input`
+export const Uploadinput = styled.input`
   width: 60%;
   height: auto;
   line-height: normal;
   padding: 0.8em 0.8em;
   border: none;
   background-color: #eee;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 12px;
   &:focus {
     outline: none;
   }
 `;
 
-export const UploadInventoryLabel = styled.label``;
+export const UploadLabel = styled.label``;
+
+export const Uploadselect = styled.select`
+  width: 68%;
+  padding: 0.8em 0.8em;
+  background-color: #eee;
+  border-radius: 12px;
+  font-size: 14px;
+  border: none;
+`;
+export const UploadOption = styled.option``;
+
+export const UploadSelectBtn = styled.div`
+  padding: 0.8em 0.8em;
+  background-color: #eee;
+  border-radius: 12px;
+  font-size: 14px;
+`;
+
+export const UploadAddButton = styled.div`
+  width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+  background-color: #484848;
+  border-radius: 12px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+`;
+
+export const UploadPlaceListDiv = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  border-radius: 10px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  padding: 10px 0;
+  position: fixed;
+`;
+
+export const UploadPlaceItemDiv = styled.div`
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+`;
+
+export const UploadInventoryAttrDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 5px 0;
+`;
+
+export const UploadInventoryAttrHeaderDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 2px solid black;
+`;
+
+export const UploadInventoryAttrHeaderBtn = styled.div`
+  color: #4f67ff;
+  font-size: 12px;
+`;

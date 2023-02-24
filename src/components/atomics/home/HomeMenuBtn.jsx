@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   HomeMenuIcon,
   HomeMenuItemDiv,
@@ -8,9 +8,11 @@ import {
 
 const HomeMenuBtn = ({ icon, text, filter }) => {
   
+  const param = useParams();
+  const id = param.team_id;
   const navigate = useNavigate();
   const goUpload = () => {
-    navigate(`/upload/${filter}`)
+    navigate(`/upload/${id}/${filter}`)
   }
 
 

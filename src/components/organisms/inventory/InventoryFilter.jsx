@@ -5,54 +5,51 @@ import {
   InventoryFilterBtn,
   InventoryFilterInput,
   InventoryFilterInputDiv,
+  InventoryFilterSelect,
+  InventoryFilterOption,
 } from "../../../styledComponents";
-import { filter } from "../../../data";
+import { filterData } from "../../../data";
 import InventoryFilterItem from "../../atomics/inventory/InventoryFilterItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { useCallback } from "react";
 
-const InventoryFilter = () => {
-  const [toggle, setToggle] = useState(true);
-  const [filterText, setFilterText] = useState("전체 보기");
+const InventoryFilter = ({ filter, setFilter, search, setSearch }) => {
+  const [fillterToggle, setFilterToggle] = useState(true);
 
   const onFilterClick = (e) => {
-    if (!toggle) {
-      setToggle(true);
+    if (!fillterToggle) {
+      setFilterToggle(true);
     } else {
-      setToggle(false);
+      setFilterToggle(false);
     }
   };
+
+  const onSearchChange = useCallback(
+    (e) => {
+      const currSearch = e.target.value;
+      setSearch(currSearch);
+    },
+    [setSearch]
+  );
 
   return (
     <>
       <InventoryFilterDiv>
-        {toggle ? (
-          <>
-            <InventoryFilterBtn onClick={onFilterClick}>
-              {filterText}
-              <FontAwesomeIcon icon={faAngleDown} />
-            </InventoryFilterBtn>
-            <InventoryFilterInputDiv>
-              <InventoryFilterInput />
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </InventoryFilterInputDiv>
-          </>
-        ) : (
-          <InventoryFilterListDiv>
-            {filter.map((item) => (
-              <div key={item.name}>
-                <InventoryFilterItem
-                  setFilterText={setFilterText}
-                  setToggle={setToggle}
-                  text={item.text}
-                />
-              </div>
-            ))}
-          </InventoryFilterListDiv>
-        )}
+        <InventoryFilterSelect>
+          {filterData.map((item) => (
+            <InventoryFilterOption key={item.name} value={item.data}>
+              {item.text}
+            </InventoryFilterOption>
+          ))}
+        </InventoryFilterSelect>
+        <InventoryFilterInputDiv>
+          <InventoryFilterInput onChange={onSearchChange} value={search} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </InventoryFilterInputDiv>
       </InventoryFilterDiv>
     </>
   );

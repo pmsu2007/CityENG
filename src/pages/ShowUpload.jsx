@@ -1,16 +1,19 @@
 import Header from "../components/organisms/common/Header";
 import { UploadPageInnerDiv } from "../styledComponents";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { uploadHeader } from "../data";
 const ShowUpload = () => {
   const location = useLocation();
+  const param = useParams();
+  const teamId = param.team_id;
+
   return (
     <>
       {uploadHeader.map((item) => (
-        item.url === location.pathname ? (<Header key={item.text} text={item.text} />) : (null)
+        item.keyword === location.pathname.split('/').pop() ? (<Header key={item.text} text={item.text} />) : (null)
       ))}
       <UploadPageInnerDiv>
-        <Outlet />
+        <Outlet context={{teamId}} />
       </UploadPageInnerDiv>
     </>
   );

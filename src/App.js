@@ -10,7 +10,7 @@ import UploadIn from "./components/templates/UploadIn";
 import Register from "./components/templates/Register";
 import TeamSelect from "./components/templates/TeamSelect";
 import Place from "./components/templates/Place";
-
+import Attribute from "./components/templates/Attribute";
 
 function App() {
   return (
@@ -22,16 +22,20 @@ function App() {
           <Route path="team/:team_id" element={<ShowMain />}>
             {/* 홈 페이지 */}
             <Route path="home" element={<Home />} />
-            
-            {/* 제품 페이지 */}
+
+            {/* 제품 목록 페이지 */}
             <Route path="inventory" element={<Inventory />} />
+            
+            {/* 제품 상세 페이지 */}
+            <Route path="inventory/:product_id" element />
             
             {/* 위치 페이지 */}
             <Route path="places" element={<Place />} />
+            <Route path="attrs" element={<Attribute />} />
           </Route>
 
           {/* 등록 페이지 */}
-          <Route path="upload" element={<ShowUpload />}>
+          <Route path="upload/:team_id" element={<ShowUpload />}>
             <Route path="inventory" element={<UploadInventory />} />
             <Route path="in" element={<UploadIn />} />
             <Route path="out" element />

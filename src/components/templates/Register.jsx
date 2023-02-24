@@ -27,25 +27,25 @@ const Register = () => {
   const onChangeId = useCallback((e) => {
     const currId = e.target.value;
     setId(currId);
-  }, []);
+  }, [setId]);
 
   //비밀번호
   const onChangePwd = useCallback((e) => {
     const currPwd = e.target.value;
     setPwd(currPwd);
-  }, []);
+  }, [setPwd]);
 
   //비밀번호 확인
   const onChangeConfirmPwd = useCallback((e) => {
     const currConfirmPwd = e.target.value;
     setConfirmPwd(currConfirmPwd);
-  }, []);
+  }, [setConfirmPwd]);
 
   //닉네임
   const onChangeNickname = useCallback((e) => {
     const currNickname = e.target.value;
     setNickname(currNickname);
-  }, []);
+  }, [setNickname]);
 
   const isPwdValid = validatePwd(pwd);
   const isConfirmPwd = pwd === confirmPwd;
