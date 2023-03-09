@@ -2,13 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { APIURL } from "../config/key";
 
-const useProductList = (teamId) => {
+const usePendingList = (teamId) => {
   const [data, setData] = useState();
   const sendRequest = async () => {
-    const res = await axios.get(`${APIURL}/api/teams/${teamId}/products/page`);
+    const res = await axios.get(`${APIURL}/api/teams/${teamId}/pendings`);
 
-    if (res.status === 200) setData(res.data.content);
-    // console.log(res.data.content);
+    if (res.status === 200)
+        setData(res.data);
   };
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const useProductList = (teamId) => {
   return data;
 };
 
-export default useProductList;
+export default usePendingList;

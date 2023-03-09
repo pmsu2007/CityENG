@@ -29,8 +29,8 @@ const AttrItem = ({ id, name, type, isDelete }) => {
       <AttrItemDiv>
         <AttrItemNameDiv>{name}</AttrItemNameDiv>
         {typeData.map((data) =>
-          data.name === type ? (
-            <AttrItemTypeDiv key={data.name}>{data.text}</AttrItemTypeDiv>
+          data.id === type ? (
+            <AttrItemTypeDiv key={data.name}>{data.name}</AttrItemTypeDiv>
           ) : null
         )}
         <AttrItemSettingDiv>

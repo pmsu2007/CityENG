@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 
 export const MainPageDiv = styled.div`
   width: 100%;
@@ -485,7 +486,8 @@ export const FilterInventoryDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
   justify-content: center;
-  margin: 20px 0;
+  margin-top: 20px;
+  margin-bottom: 70px;
 `;
 export const InventoryFilterDiv = styled.div`
   display: flex;
@@ -529,7 +531,6 @@ export const InventoryFilterSelect = styled.select`
   margin-bottom: 10px;
 `;
 export const InventoryFilterOption = styled.option``;
-
 
 export const InventoryFilterInputDiv = styled.div`
   display: flex;
@@ -576,7 +577,7 @@ export const InventoryItemDiv = styled.div`
 export const InventoryItemImg = styled.img`
   width: 60px;
   height: 60px;
-`
+`;
 
 export const InventoryItemInfoDiv = styled.div`
   width: 67%;
@@ -584,18 +585,57 @@ export const InventoryItemInfoDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 5px 10px;
-`
+`;
 
 export const InventoryItemInfoInnerDiv = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 
 export const InventoryItemQuantityDiv = styled.div`
-  color: #4F67FF;
-`
+  color: #4f67ff;
+`;
+
+export const ProductDiv = styled.div`
+  width: 100%;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ProductListDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ProductTitleDiv = styled.div`
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid black;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+`;
+
+export const ProductItemInnerDiv = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  font-size: 14px;
+`;
+
+export const ProductItemTitle = styled.div`
+  flex-basis: 30%;
+  padding: 5px;
+  background-color: #eee;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+`;
 
 // Attribute =====================================
 
@@ -646,7 +686,7 @@ export const AttrInnerInputDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const AttrInput = styled.input`
+export const Attrinput = styled.input`
   width: 90%;
   line-height: normal;
   padding: 0.8em 0.8em;
@@ -659,7 +699,7 @@ export const AttrInput = styled.input`
   margin-bottom: 10px;
 `;
 
-export const AttrSelect = styled.select`
+export const Attrselect = styled.select`
   width: 68%;
   padding: 0.6em 0.6em;
   background-color: white;
@@ -757,9 +797,21 @@ export const UploadInputInnerDiv = styled.div`
   padding: 10px 10px;
 `;
 
+export const UploadAttrInputInnerDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding: 10px 10px;
+`;
+
+export const UploadAttrInputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const Uploadinput = styled.input`
-  width: 60%;
-  height: auto;
   line-height: normal;
   padding: 0.8em 0.8em;
   border: none;
@@ -771,10 +823,12 @@ export const Uploadinput = styled.input`
   }
 `;
 
-export const UploadLabel = styled.label``;
+export const UploadLabel = styled.div`
+  width: 30%;
+`;
 
 export const Uploadselect = styled.select`
-  width: 68%;
+  width: 75%;
   padding: 0.8em 0.8em;
   background-color: #eee;
   border-radius: 12px;
@@ -844,4 +898,171 @@ export const UploadInventoryAttrHeaderDiv = styled.div`
 export const UploadInventoryAttrHeaderBtn = styled.div`
   color: #4f67ff;
   font-size: 12px;
+`;
+
+export const UploadAttrValueListDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  positon: fixed;
+  background-color: #eee;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  padding: 10px 0;
+  margin-top: 5px;
+`;
+
+export const UploadAttrValueItemDiv = styled.div`
+  padding: 5px 0;
+`;
+
+// Upload In ==========================================
+
+export const ProductAddDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100px;
+`;
+
+export const ProductAddListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  border-bottom: 1px solid gray;
+  margin: 10px 0;
+`;
+
+export const ProductSelectListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 400px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  border-bottom: 1px solid gray;
+  margin: 10px 0;
+`;
+
+export const ProductSelectItemDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ProductFilterinput = styled.input`
+  line-height: normal;
+  padding: 0.8em 0.8em;
+  border: none;
+  background-color: #eee;
+  font-size: 14px;
+  border-radius: 12px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const ProductQuantityinput = styled.input`
+  width: 20%;
+  line-height: normal;
+  padding: 0.8em 0.8em;
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  border-radius: 12px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+// History
+
+export const HistoryDiv = styled.div`
+  width: 100%;
+  margin: 70px 0;
+`;
+
+export const HistoryListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HistoryItemDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 125px;
+  border-radius: 24px;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  margin: 10px 0;
+`;
+
+export const HistoryItemHeaderDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+`;
+
+export const HistoryItemContentDiv = styled.div`
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+`;
+
+export const HistoryItemMemoDiv = styled.div`
+  color: #484848;
+  font-size: 12px;
+`;
+
+export const HistoryItemCircle = styled.div`
+
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 50px;
+  ${(props) => {
+    if (props.type === "IN") {
+      return css`
+        background-color: #50a4fa;
+      `;
+    } else if (props.type === "OUT") {
+      return css`
+        background-color: #fb6164;
+      `;
+    }else if (props.type === "ADJUST") {
+      return css`
+        background-color: #3cb9a0;
+      `;
+    }else if (props.type === "MOVE") {
+      return css`
+        background-color: #f5a623;
+      `;
+    }
+  }}
 `;

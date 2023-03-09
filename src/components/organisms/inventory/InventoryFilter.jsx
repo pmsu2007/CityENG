@@ -1,32 +1,18 @@
-import { useState } from "react";
-import {
+ import {
   InventoryFilterDiv,
-  InventoryFilterListDiv,
-  InventoryFilterBtn,
   InventoryFilterInput,
   InventoryFilterInputDiv,
   InventoryFilterSelect,
   InventoryFilterOption,
 } from "../../../styledComponents";
 import { filterData } from "../../../data";
-import InventoryFilterItem from "../../atomics/inventory/InventoryFilterItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleDown,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 
-const InventoryFilter = ({ filter, setFilter, search, setSearch }) => {
-  const [fillterToggle, setFilterToggle] = useState(true);
-
-  const onFilterClick = (e) => {
-    if (!fillterToggle) {
-      setFilterToggle(true);
-    } else {
-      setFilterToggle(false);
-    }
-  };
+const InventoryFilter = ({search, setSearch }) => {
 
   const onSearchChange = useCallback(
     (e) => {

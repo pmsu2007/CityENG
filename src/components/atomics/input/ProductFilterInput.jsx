@@ -1,12 +1,11 @@
-import { Uploadinput } from "../../../styledComponents";
+import { ProductFilterinput } from "../../../styledComponents";
 import { useState } from "react";
 
-const UploadInput = ({ ...props }) => {
+const ProductFilterInput = ({ ...props }) => {
   const [inputValue, setInputValue] = useState();
-
   return (
     <>
-      <Uploadinput
+      <ProductFilterinput
         value={inputValue || ""}
         onChange={(e) => {
           setInputValue(e.target.value);
@@ -19,5 +18,4 @@ const UploadInput = ({ ...props }) => {
   );
 };
 
-export default UploadInput;
-
+export default ProductFilterInput;

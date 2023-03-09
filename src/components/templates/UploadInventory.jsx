@@ -4,12 +4,12 @@ import usePlaceList from "../../hooks/usePlaceList";
 import useAttrList from "../../hooks/useAttrList";
 import {
   UploadInputDiv,
+  UploadAttrInputInnerDiv,
   UploadInputInnerDiv,
   UploadLabel,
   UploadInventoryAttrDiv,
   UploadInventoryAttrHeaderDiv,
   UploadInventoryAttrHeaderBtn,
-  UploadSelectBtn,
   UploadAddButton,
 } from "../../styledComponents";
 import InventoryAttrItem from "../atomics/inventory/InventoryAttrItem";
@@ -117,10 +117,10 @@ const UploadInventory = () => {
           </UploadInventoryAttrHeaderDiv>
           {attrs &&
             attrs.map((attr) => (
-              <UploadInputInnerDiv key={attr.id}>
+              <UploadAttrInputInnerDiv key={attr.id}>
                 <UploadLabel>{attr.name}</UploadLabel>
                 <InventoryAttrItem id={attr.id} getResult={getAttrResult} />
-              </UploadInputInnerDiv>
+              </UploadAttrInputInnerDiv>
             ))}
         </UploadInventoryAttrDiv>
         <UploadAddButton onClick={onSubmit}> 등록 </UploadAddButton>

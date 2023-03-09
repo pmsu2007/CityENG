@@ -19,7 +19,7 @@ import ProductTimeInput from "../atomics/input/ProductTimeInput";
 import axios from "axios";
 import { APIURL } from "../../config/key";
 
-const UploadIn = ({ type }) => {
+const UploadOut = ({ type }) => {
   const param = useParams();
   const teamId = param.team_id;
   const navigate = useNavigate();
@@ -59,6 +59,7 @@ const UploadIn = ({ type }) => {
 
   const deleteProductId = (obj) => {
     setProductId(productId.filter((i) => i !== obj));
+    // console.log(productId);
   };
 
   const getBodyResult = (obj) => {
@@ -85,9 +86,9 @@ const UploadIn = ({ type }) => {
 
     if (res.status === 200) {
       navigate(`/team/${teamId}/inventory`);
-      console.log("입고 성공");
+      console.log("출고 성공");
     } else {
-      console.log("입고 실패");
+      console.log("출고 실패");
     }
   };
 
@@ -142,6 +143,16 @@ const UploadIn = ({ type }) => {
             </ProductAddListDiv>
           ) : (
             <ProductSelectListDiv>
+              {/* {selectProducts &&
+                  selectProducts.map((product) => (
+                    <ProductSelectItem
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      places={product.places}
+                      place={body.place}
+                    />
+                  ))} */}
               {products &&
                 products
                   .filter((product) => productId.includes(product.id))
@@ -173,4 +184,4 @@ const UploadIn = ({ type }) => {
   );
 };
 
-export default UploadIn;
+export default UploadOut;

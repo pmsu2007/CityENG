@@ -1,12 +1,12 @@
-import { Uploadinput } from "../../../styledComponents";
+import { Attrinput } from "../../../styledComponents";
 import { useState } from "react";
 
-const UploadInput = ({ ...props }) => {
+const AttrInput = ({ ...props }) => {
   const [inputValue, setInputValue] = useState();
 
   return (
     <>
-      <Uploadinput
+      <Attrinput
         value={inputValue || ""}
         onChange={(e) => {
           setInputValue(e.target.value);
@@ -19,5 +19,4 @@ const UploadInput = ({ ...props }) => {
   );
 };
 
-export default UploadInput;
-
+export default AttrInput;

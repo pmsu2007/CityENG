@@ -11,6 +11,12 @@ import Register from "./components/templates/Register";
 import TeamSelect from "./components/templates/TeamSelect";
 import Place from "./components/templates/Place";
 import Attribute from "./components/templates/Attribute";
+import ProductDetail from "./components/templates/ProductDetail";
+import UploadOut from "./components/templates/UploadOut";
+import UploadMove from "./components/templates/UploadMove";
+import UploadAdjust from "./components/templates/UploadAdjust";
+import History from "./components/templates/History";
+import HistoryDetail from "./components/templates/HistoryDetail";
 
 function App() {
   return (
@@ -25,22 +31,30 @@ function App() {
 
             {/* 제품 목록 페이지 */}
             <Route path="inventory" element={<Inventory />} />
-            
+
             {/* 제품 상세 페이지 */}
-            <Route path="inventory/:product_id" element />
-            
+            <Route path="inventory/:product_id" element={<ProductDetail />} />
+
             {/* 위치 페이지 */}
             <Route path="places" element={<Place />} />
+
+            {/* 속성 페이지 */}
             <Route path="attrs" element={<Attribute />} />
+
+            {/* 히스토리 목록 페이지 */}
+            <Route path="history" element={<History />} />
+
+            {/* 히스토리 상세 페이지 */}
+            <Route path="history/:product_id" element={<HistoryDetail />} />
           </Route>
 
           {/* 등록 페이지 */}
           <Route path="upload/:team_id" element={<ShowUpload />}>
             <Route path="inventory" element={<UploadInventory />} />
-            <Route path="in" element={<UploadIn />} />
-            <Route path="out" element />
-            <Route path="move" element />
-            <Route path="adjust" element />
+            <Route path="in" element={<UploadIn type="IN" />} />
+            <Route path="out" element={<UploadOut type="OUT" />} />
+            <Route path="move" element={<UploadMove type="MOVE" />} />
+            <Route path="adjust" element={<UploadAdjust type="ADJUST" />} />
           </Route>
         </Route>
       </Routes>

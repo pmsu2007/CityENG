@@ -1,11 +1,11 @@
-import { UploadOption, Uploadselect } from "../../../styledComponents";
+import { AttrOption, Attrselect } from "../../../styledComponents";
 import { useState } from "react";
 
-const UploadSelect = ({ options, ...props }) => {
+const AttrSelect = ({ options, ...props }) => {
   const [selectValue, setSelectValue] = useState();
   return (
     <>
-      <Uploadselect
+      <Attrselect
         value={selectValue}
         onChange={(e) => {
           setSelectValue(e.target.value);
@@ -14,16 +14,16 @@ const UploadSelect = ({ options, ...props }) => {
           props.getResult({ [props.name]: selectValue });
         }}
       >
-        <UploadOption>필수 항목 입니다.</UploadOption>
+        <AttrOption />
         {options &&
           options.map((option, idx) => (
-            <UploadOption key={idx} value={option.id}>
+            <AttrOption key={idx} value={option.id}>
               {option.name}
-            </UploadOption>
+            </AttrOption>
           ))}
-      </Uploadselect>
+      </Attrselect>
     </>
   );
 };
 
-export default UploadSelect;
+export default AttrSelect;

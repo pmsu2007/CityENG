@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { APIURL } from "../../../config/key";
 import {
-  Uploadselect,
-  UploadOption,
+  UploadAttrValueItemDiv,
   Uploadinput,
+  UploadAttrInputDiv,
+  UploadAttrValueListDiv,
 } from "../../../styledComponents";
 
 const InventoryAttrItem = ({ id, getResult }) => {
   const [values, setValues] = useState([]);
   const [inputValue, setInputValue] = useState();
-  const [selectValue, setSelectValue] = useState();
+
+  const [toggle, setToggle] = useState(false);
 
   const sendRequest = async () => {
     const res = await axios.get(`${APIURL}/api/teams/attrs/${id}/values`);
@@ -23,7 +25,7 @@ const InventoryAttrItem = ({ id, getResult }) => {
 
   return (
     <>
-      {values.length === 0 ? (
+      <UploadAttrInputDiv>
         <Uploadinput
           value={inputValue || ""}
           onChange={(e) => {
@@ -32,26 +34,21 @@ const InventoryAttrItem = ({ id, getResult }) => {
           onBlur={() => {
             getResult({ id: id, value: inputValue });
           }}
+          onClick={() => {
+            setToggle((e) => !e)
+          }}
         />
-      ) : (
-        <Uploadselect
-          value={selectValue}
-          onChange={(e) => {
-            setSelectValue(e.target.value);
-          }}
-          onBlur={() => {
-            getResult({ id: id, value: selectValue });
-          }}
-        >
-          <UploadOption/>
-          {values &&
-            values.map((value, idx) => (
-              <UploadOption key={idx} value={value}>
-                {value}
-              </UploadOption>
-            ))}
-        </Uploadselect>
-      )}
+        { toggle ? (<UploadAttrValueListDiv>
+          {values && values.map((value, idx) => (
+            <UploadAttrValueItemDiv key={idx} onClick={() => {
+              setInputValue(value);
+              setToggle((e) => !e);
+            }}>
+              {value}
+            </UploadAttrValueItemDiv>
+          ))}
+        </UploadAttrValueListDiv>) : (null)}
+      </UploadAttrInputDiv>
     </>
   );
 };

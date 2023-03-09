@@ -6,18 +6,17 @@ import {
   AttrAddButton,
   AttrInputDiv,
   AttrInputButton,
-  AttrInput,
   AttrInnerInputDiv,
-  AttrSelect,
-  AttrOption,
 } from "../../styledComponents";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import useAttrList from "../../hooks/useAttrList";
 import { useParams } from "react-router-dom";
 import AttrItem from "../organisms/attribute/AttrItem";
 import axios from "axios";
 import { APIURL } from "../../config/key";
 import { typeData } from "../../data";
+import AttrInput from "../atomics/input/AttrInput";
+import AttrSelect from "../atomics/select/AttrSelect";
 
 const Attribute = () => {
   const param = useParams();
@@ -26,30 +25,23 @@ const Attribute = () => {
   const [isDelete, setIsDelete] = useState(false);
   const [addToggle, setAddToggle] = useState(false);
 
-  const [name, setName] = useState("");
-  const [type, setType] = useState();
-  
-  const attrs = useAttrList(id);
+  const [body, setBody] = useState({
+    name: "",
+    type: "",
+  });
 
-  const onChangeName = useCallback(
-    (e) => {
-      const currName = e.target.value;
-      setName(currName);
-    },
-    [setName]
-  );
-  const onChangeType = useCallback(
-    (e) => {
-      const currType = e.target.value;
-      setType(currType);
-    },
-    [setType]
-  );
+  const attrs = useAttrList(id);
+  console.log(attrs);
+  const getBodyResult = (obj) => {
+    const key = Object.keys(obj);
+    setBody({ ...body, [key]: obj[key] });
+    console.log(body);
+  };
 
   const sendCreateRequest = async () => {
     const res = await axios.post(`${APIURL}/api/teams/${id}/attr`, {
-      name: name,
-      type: type.name,
+      name: body.name,
+      type: body.type,
     });
 
     if (res.status === 201) {
@@ -59,27 +51,16 @@ const Attribute = () => {
     }
   };
 
-  const onDeleteClick = () => {
-    if (!isDelete) {
-      setIsDelete(true);
-    } else {
-      setIsDelete(false);
-    }
-  };
-
-  const onPlusClick = () => {
-    if (!addToggle) {
-      setAddToggle(true);
-    } else {
-      sendCreateRequest();
-      setAddToggle(false);
-    }
-  };
-
   return (
     <>
       <Header text={"제품 속성"} />
-      <HeaderButton onClick={onDeleteClick}>삭제</HeaderButton>
+      <HeaderButton
+        onClick={() => {
+          setIsDelete((e) => !e);
+        }}
+      >
+        삭제
+      </HeaderButton>
       <AttrDiv>
         <AttrListDiv>
           {attrs &&
@@ -95,19 +76,27 @@ const Attribute = () => {
         </AttrListDiv>
         {addToggle ? (
           <AttrInputDiv>
-            <AttrInput type="text" value={name} onChange={onChangeName} />
+            <AttrInput name="name" getResult={getBodyResult} />
             <AttrInnerInputDiv>
-              <AttrSelect onChange={onChangeType}>
-                <AttrOption />
-                {typeData.map((data) => (
-                  <AttrOption key={data.name} value={data.name}>{data.text}</AttrOption>
-                ))}
-              </AttrSelect>
-              <AttrInputButton onClick={onPlusClick}>등록</AttrInputButton>
+              <AttrSelect options={typeData} name="type" getResult={getBodyResult}/>
+              <AttrInputButton
+                onClick={() => {
+                  setAddToggle((e) => !e);
+                  sendCreateRequest();
+                }}
+              >
+                등록
+              </AttrInputButton>
             </AttrInnerInputDiv>
           </AttrInputDiv>
         ) : (
-          <AttrAddButton onClick={onPlusClick}>+</AttrAddButton>
+          <AttrAddButton
+            onClick={() => {
+              setAddToggle((e) => !e);
+            }}
+          >
+            +
+          </AttrAddButton>
         )}
       </AttrDiv>
     </>

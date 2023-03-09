@@ -14,12 +14,12 @@ import { useState } from "react";
 import useProductList from "../../hooks/useProductList";
 import ProductFilterInput from "../atomics/input/ProductFilterInput";
 import ProductItem from "../atomics/pending/ProductItem";
-import ProductSelectItem from "../atomics/pending/ProudctSelectItem";
+import ProductMoveSelectItem from "../atomics/pending/ProductMoveSelectItem";
 import ProductTimeInput from "../atomics/input/ProductTimeInput";
 import axios from "axios";
 import { APIURL } from "../../config/key";
 
-const UploadIn = ({ type }) => {
+const UploadMove = ({ type }) => {
   const param = useParams();
   const teamId = param.team_id;
   const navigate = useNavigate();
@@ -29,7 +29,8 @@ const UploadIn = ({ type }) => {
 
   const [productToggle, setProductToggle] = useState(false);
   const [body, setBody] = useState({
-    place: 0,
+    toPlace: 0,
+    fromPlace: 0,
     memo: "",
     createdAt: "",
   });
@@ -59,6 +60,7 @@ const UploadIn = ({ type }) => {
 
   const deleteProductId = (obj) => {
     setProductId(productId.filter((i) => i !== obj));
+    // console.log(productId);
   };
 
   const getBodyResult = (obj) => {
@@ -69,14 +71,14 @@ const UploadIn = ({ type }) => {
 
   const sendRequest = async () => {
     console.log({
-      id: body.place,
+      id: body.fromPlace,
       type: type,
       createdAt: body.createdAt,
       memo: body.memo,
       products: selectProducts,
     });
     const res = await axios.post(`${APIURL}/api/teams/${teamId}/pending`, {
-      id: body.place,
+      id: body.fromPlace,
       type: type,
       createdAt: body.createdAt,
       memo: body.memo,
@@ -85,9 +87,9 @@ const UploadIn = ({ type }) => {
 
     if (res.status === 200) {
       navigate(`/team/${teamId}/inventory`);
-      console.log("입고 성공");
+      console.log("이동 성공");
     } else {
-      console.log("입고 실패");
+      console.log("이동 실패");
     }
   };
 
@@ -99,10 +101,18 @@ const UploadIn = ({ type }) => {
     <>
       <UploadInputDiv>
         <UploadInputInnerDiv>
-          <UploadLabel>위치</UploadLabel>
+          <UploadLabel>현재 위치</UploadLabel>
           <UploadSelect
             options={places}
-            name="place"
+            name="fromPlace"
+            getResult={getBodyResult}
+          />
+        </UploadInputInnerDiv>
+        <UploadInputInnerDiv>
+          <UploadLabel>새 위치</UploadLabel>
+          <UploadSelect
+            options={places}
+            name="toPlace"
             getResult={getBodyResult}
           />
         </UploadInputInnerDiv>
@@ -147,19 +157,20 @@ const UploadIn = ({ type }) => {
                   .filter((product) => productId.includes(product.id))
                   .map((filterItem) => {
                     const quantity = filterItem.places.filter(
-                      (place) => place.id === Number(body.place)
+                      (place) => place.id === Number(body.fromPlace)
                     );
                     const productId = filterItem.id.toString();
                     return (
                       <>
-                        <ProductSelectItem
+                        <ProductMoveSelectItem
                           key={filterItem.id}
                           id={productId}
                           name={filterItem.name}
                           quantity={quantity[0].quantity}
                           onClick={deleteProductId}
                           getResult={getSelectProduct}
-                          place={body.place}
+                          toPlace={body.toPlace}
+                          fromPlace={body.fromPlace}
                         />
                       </>
                     );
@@ -173,4 +184,4 @@ const UploadIn = ({ type }) => {
   );
 };
 
-export default UploadIn;
+export default UploadMove;

@@ -13,7 +13,14 @@ export const uploadHeader = [
 ];
 
 export const typeData = [
-  { text: "텍스트", name: "STRING" },
-  { text: "숫자", name: "NUMBER" },
-  { text: "날짜", name: "DATETIME" },
+  { id: "STRING", name: "텍스트" },
+  { id: "NUMBER", name: "숫자"},
+  { id: "DATETIME", name: "날짜"},
 ];
+
+export const pendingType = [
+  { type: "IN", name: "입고"},
+  { type: "OUT", name: "출고"},
+  { type: "MOVE", name: "이동"},
+  { type: "ADJUST", name: "조정"}
+]
