@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { APIURL } from "../../config/key";
+import { getCookie } from "../../config/cookie";
 
 const History = () => {
   const param = useParams();
@@ -43,19 +44,24 @@ const History = () => {
       query += `startDateTime=${body.startDateTime}&endDateTime=${body.endDateTime}`;
     }
     const res = await axios.get(
-      `${APIURL}/api/teams/${teamId}/pendings${query}`
+      `${APIURL}/api/teams/${teamId}/pendings${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
     );
-    console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`);
-    console.log(res);
+    // console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`);
+    // console.log(res);
     if (res.status === 200) {
       setPendings(res.data);
     } else {
       console.log("Error");
     }
   };
-  
+
   useEffect(() => {
-    sendRequest()
+    sendRequest();
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import axios from "axios";
 import { APIURL } from "../../config/key";
 import InventoryItem from "../organisms/inventory/InventoryItem";
 import { useParams } from "react-router-dom";
+import { getCookie } from "../../config/cookie";
 
 const Inventory = () => {
   const [searchText, setSearchText] = useState("");
@@ -13,30 +14,35 @@ const Inventory = () => {
   const teamId = param.team_id;
 
   const sendRequest = async () => {
-    let query = ""
+    let query = "";
     if (searchText) {
-      query = `?value=${searchText}`
+      query = `?value=${searchText}`;
     }
-    const res = await axios.get(`${APIURL}/api/teams/${teamId}/products/page${query}`);
-    console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`)
-    console.log(res);
+    const res = await axios.get(
+      `${APIURL}/api/teams/${teamId}/products/page${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
+    // console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`)
+    // console.log(res);
     if (res.status === 200) {
       setProducts(res.data.content);
     } else {
-      console.log('Error')
+      console.log("Error");
     }
   };
 
   useEffect(() => {
-    sendRequest()
+    sendRequest();
   }, [searchText]);
 
   return (
     <>
       <FilterInventoryDiv>
-        <InventoryFilter
-          getResult={setSearchText}
-        />
+        <InventoryFilter getResult={setSearchText} />
         <InventoryListDiv>
           {products &&
             products.map((product) => (

@@ -7,6 +7,7 @@ import {
   UploadAttrInputDiv,
   UploadAttrValueListDiv,
 } from "../../../styledComponents";
+import { getCookie } from "../../../config/cookie";
 
 const InventoryAttrItem = ({ id, getResult }) => {
   const [values, setValues] = useState([]);
@@ -15,7 +16,11 @@ const InventoryAttrItem = ({ id, getResult }) => {
   const [toggle, setToggle] = useState(false);
 
   const sendRequest = async () => {
-    const res = await axios.get(`${APIURL}/api/teams/attrs/${id}/values`);
+    const res = await axios.get(`${APIURL}/api/teams/attrs/${id}/values`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
     if (res.status === 200) setValues(res.data);
   };
 
@@ -35,19 +40,25 @@ const InventoryAttrItem = ({ id, getResult }) => {
             getResult({ id: id, value: inputValue });
           }}
           onClick={() => {
-            setToggle((e) => !e)
+            setToggle((e) => !e);
           }}
         />
-        { toggle ? (<UploadAttrValueListDiv>
-          {values && values.map((value, idx) => (
-            <UploadAttrValueItemDiv key={idx} onClick={() => {
-              setInputValue(value);
-              setToggle((e) => !e);
-            }}>
-              {value}
-            </UploadAttrValueItemDiv>
-          ))}
-        </UploadAttrValueListDiv>) : (null)}
+        {toggle ? (
+          <UploadAttrValueListDiv>
+            {values &&
+              values.map((value, idx) => (
+                <UploadAttrValueItemDiv
+                  key={idx}
+                  onClick={() => {
+                    setInputValue(value);
+                    setToggle((e) => !e);
+                  }}
+                >
+                  {value}
+                </UploadAttrValueItemDiv>
+              ))}
+          </UploadAttrValueListDiv>
+        ) : null}
       </UploadAttrInputDiv>
     </>
   );

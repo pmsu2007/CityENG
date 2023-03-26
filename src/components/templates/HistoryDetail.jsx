@@ -21,7 +21,7 @@ const HistoryDetail = () => {
   const places = usePlaceList(teamId);
   const date = new Date(detail && detail.createdAt);
   console.log(detail);
-  console.log(places);
+  // console.log(places);
 
   const convertPlace = (item, target) => {
     let toText = "";
@@ -79,7 +79,7 @@ const HistoryDetail = () => {
                   key={product.id}
                   id={product.productId}
                   fromQuantity={product.fromQuantity}
-                  toQuantity={product.toQuantity}
+                  toQuantity={product.quantity}
                   type={detail.type}
                 />
               );

@@ -25,7 +25,7 @@ const ProductMoveQuantityInput = ({ ...props }) => {
   return (
     <>
       <ProductSelectItemInnerDiv>
-        <FontAwesomeIcon icon={faMinus} onClick={onClickMinus} />
+        {/* <FontAwesomeIcon icon={faMinus} onClick={onClickMinus} /> */}
         <ProductQuantityinput
           type="number"
           value={inputValue || ""}
@@ -44,7 +44,7 @@ const ProductMoveQuantityInput = ({ ...props }) => {
             });
           }}
         />
-        <FontAwesomeIcon icon={faPlus} onClick={onClickPlus} />
+        {/* <FontAwesomeIcon icon={faPlus} onClick={onClickPlus} /> */}
       </ProductSelectItemInnerDiv>
     </>
   );

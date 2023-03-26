@@ -7,6 +7,7 @@ import {
 } from "../../../styledComponents";
 
 const HistoryDetailItem = ({ id, fromQuantity, toQuantity, type }) => {
+  
   const product = useProductDetail(id);
   const convertQuantity = (to, from) => {
     let quantity = 0;

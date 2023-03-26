@@ -17,6 +17,7 @@ import UploadSelect from "../atomics/select/UploadSelect";
 import UploadInput from "../atomics/input/UploadInput";
 import axios from "axios";
 import { APIURL } from "../../config/key";
+import { getCookie } from "../../config/cookie";
 
 const UploadInventory = () => {
   const navigate = useNavigate();
@@ -72,8 +73,16 @@ const UploadInventory = () => {
       ],
       attributes: attributes.slice(1),
     };
-    console.log(requestBody)
-    const res = await axios.post(`${APIURL}/api/teams/${teamId}/product`, requestBody);
+    console.log(requestBody);
+    const res = await axios.post(
+      `${APIURL}/api/teams/${teamId}/product`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
 
     if (res.status === 201) {
       navigate(`/team/${teamId}/inventory`);

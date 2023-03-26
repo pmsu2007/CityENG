@@ -25,6 +25,17 @@ export const HorizontalLine = styled.hr`
   maring-bottom: 30px;
 `;
 
+export const CautionDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: red;
+  font-size: 12px;
+  padding: 10px;
+  border: 1px solid black;
+  line-height: 18px;
+  margin-bottom: 10px;
+`
+
 // Entry =======================================
 export const EntryDiv = styled.div`
   display: flex;

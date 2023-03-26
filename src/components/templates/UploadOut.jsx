@@ -18,6 +18,8 @@ import ProductSelectItem from "../atomics/pending/ProudctSelectItem";
 import ProductTimeInput from "../atomics/input/ProductTimeInput";
 import axios from "axios";
 import { APIURL } from "../../config/key";
+import Caution from "../organisms/common/Caution";
+import { getCookie } from "../../config/cookie";
 
 const UploadOut = ({ type }) => {
   const param = useParams();
@@ -83,6 +85,11 @@ const UploadOut = ({ type }) => {
       createdAt: body.createdAt,
       memo: body.memo,
       products: selectProducts,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
     });
 
     if (res.status === 200) {
@@ -100,6 +107,7 @@ const UploadOut = ({ type }) => {
   return (
     <>
       <UploadInputDiv>
+        <Caution/>
         <UploadInputInnerDiv>
           <UploadLabel>위치</UploadLabel>
           <UploadSelect
@@ -144,16 +152,6 @@ const UploadOut = ({ type }) => {
             </ProductAddListDiv>
           ) : (
             <ProductSelectListDiv>
-              {/* {selectProducts &&
-                  selectProducts.map((product) => (
-                    <ProductSelectItem
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      places={product.places}
-                      place={body.place}
-                    />
-                  ))} */}
               {products &&
                 products
                   .filter((product) => productId.includes(product.id))

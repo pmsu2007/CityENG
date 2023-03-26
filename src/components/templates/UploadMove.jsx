@@ -18,6 +18,8 @@ import ProductMoveSelectItem from "../atomics/pending/ProductMoveSelectItem";
 import ProductTimeInput from "../atomics/input/ProductTimeInput";
 import axios from "axios";
 import { APIURL } from "../../config/key";
+import { getCookie } from "../../config/cookie";
+import Caution from "../organisms/common/Caution";
 
 const UploadMove = ({ type }) => {
   const param = useParams();
@@ -44,8 +46,8 @@ const UploadMove = ({ type }) => {
     );
     if (findIdx >= 0) {
       let copy = [...selectProducts];
-      copy[findIdx].quantity = obj.quantity
-      copy[findIdx].toQuantity = obj.toQuantity
+      copy[findIdx].quantity = obj.quantity;
+      copy[findIdx].toQuantity = obj.toQuantity;
       setSelectProducts(copy);
     } else {
       setSelectProducts([...selectProducts, obj]);
@@ -78,13 +80,21 @@ const UploadMove = ({ type }) => {
       memo: body.memo,
       products: selectProducts,
     });
-    const res = await axios.post(`${APIURL}/api/teams/${teamId}/pending`, {
-      id: body.fromPlace,
-      type: type,
-      createdAt: body.createdAt,
-      memo: body.memo,
-      products: selectProducts,
-    });
+    const res = await axios.post(
+      `${APIURL}/api/teams/${teamId}/pending`,
+      {
+        id: body.fromPlace,
+        type: type,
+        createdAt: body.createdAt,
+        memo: body.memo,
+        products: selectProducts,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
 
     if (res.status === 200) {
       navigate(`/team/${teamId}/inventory`);
@@ -101,6 +111,7 @@ const UploadMove = ({ type }) => {
   return (
     <>
       <UploadInputDiv>
+        <Caution />
         <UploadInputInnerDiv>
           <UploadLabel>현재 위치</UploadLabel>
           <UploadSelect
