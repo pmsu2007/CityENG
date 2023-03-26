@@ -61,7 +61,7 @@ const UploadInventory = () => {
   };
 
   const sendRequest = async () => {
-    const res = await axios.post(`${APIURL}/api/teams/${teamId}/product`, {
+    const requestBody = {
       name: body.name,
       barcode: body.barcode,
       places: [
@@ -71,7 +71,9 @@ const UploadInventory = () => {
         },
       ],
       attributes: attributes.slice(1),
-    });
+    };
+    console.log(requestBody)
+    const res = await axios.post(`${APIURL}/api/teams/${teamId}/product`, requestBody);
 
     if (res.status === 201) {
       navigate(`/team/${teamId}/inventory`);

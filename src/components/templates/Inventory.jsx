@@ -1,25 +1,41 @@
 import { FilterInventoryDiv, InventoryListDiv } from "../../styledComponents";
 import InventoryFilter from "../organisms/inventory/InventoryFilter";
-import { useState } from "react";
-import useProductList from "../../hooks/useProductList";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { APIURL } from "../../config/key";
 import InventoryItem from "../organisms/inventory/InventoryItem";
 import { useParams } from "react-router-dom";
 
 const Inventory = () => {
-  const [filterText, setFilterText] = useState("전체 보기");
   const [searchText, setSearchText] = useState("");
+  const [products, setProducts] = useState([]);
   const param = useParams();
   const teamId = param.team_id;
 
-  const products = useProductList(teamId);
+  const sendRequest = async () => {
+    let query = ""
+    if (searchText) {
+      query = `?value=${searchText}`
+    }
+    const res = await axios.get(`${APIURL}/api/teams/${teamId}/products/page${query}`);
+    console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`)
+    console.log(res);
+    if (res.status === 200) {
+      setProducts(res.data.content);
+    } else {
+      console.log('Error')
+    }
+  };
+
+  useEffect(() => {
+    sendRequest()
+  }, [searchText]);
+
   return (
     <>
       <FilterInventoryDiv>
         <InventoryFilter
-          filter={filterText}
-          setFilter={setFilterText}
-          search={searchText}
-          setSearch={setSearchText}
+          getResult={setSearchText}
         />
         <InventoryListDiv>
           {products &&

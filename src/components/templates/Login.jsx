@@ -8,11 +8,15 @@ import {
 } from "../../styledComponents";
 
 import { useNavigate } from "react-router-dom";
+import { useState, useCallback } from "react";
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+  
   const navigate = useNavigate();
 
-  const goHome = () => {
+  const onSubmit = () => {
     navigate('/teams');
   }
 
@@ -20,6 +24,16 @@ const Login = () => {
     navigate('/register');
   }
 
+  const onChangeId = useCallback((e) => {
+    const currId = e.target.value;
+    setId(currId);
+  }, [setId]);
+
+  //비밀번호
+  const onChangePwd = useCallback((e) => {
+    const currPwd = e.target.value;
+    setPwd(currPwd);
+  }, [setPwd]);
   return (
     <>
       <LoginDiv>
@@ -29,6 +43,8 @@ const Login = () => {
             type="text"
             id="inputId"
             autoComplete="nope"
+            value={id}
+            onChange={onChangeId}
           />
         </LoginInputDiv>
         <LoginInputDiv>
@@ -37,9 +53,11 @@ const Login = () => {
             type="password"
             id="inputPwd"
             autoComplete="nope"
+            value={pwd}
+            onChange={onChangePwd}
           />
         </LoginInputDiv>
-        <LoginButton onClick={goHome}>로그인</LoginButton>
+        <LoginButton onClick={onSubmit}>로그인</LoginButton>
 
         <GoRegisterButton onClick={goRegister}>회원가입</GoRegisterButton>
       </LoginDiv>

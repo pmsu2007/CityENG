@@ -10,7 +10,7 @@ import {
 
 const InventoryAttrItem = ({ id, getResult }) => {
   const [values, setValues] = useState([]);
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
 
   const [toggle, setToggle] = useState(false);
 
@@ -27,7 +27,7 @@ const InventoryAttrItem = ({ id, getResult }) => {
     <>
       <UploadAttrInputDiv>
         <Uploadinput
-          value={inputValue || ""}
+          value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
           }}

@@ -12,7 +12,9 @@ import { APIURL } from "../../../config/key";
 
 const AttrItem = ({ id, name, type, isDelete }) => {
   const onDeleteClick = () => {
-    sendDeleteRequest();
+    if (window.confirm("삭제하시겠습니까?")) {
+      sendDeleteRequest();
+    }
   };
 
   const sendDeleteRequest = async () => {

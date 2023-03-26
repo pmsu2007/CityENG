@@ -7,9 +7,11 @@ const ShowUpload = () => {
 
   return (
     <>
-      {uploadHeader.map((item) => (
-        item.keyword === location.pathname.split('/').pop() ? (<Header key={item.text} text={item.text} />) : (null)
-      ))}
+      {uploadHeader.map((item) =>
+        item.keyword === location.pathname.split("/").pop() ? (
+          <Header key={item.text} text={item.text} type={item.keyword} />
+        ) : null
+      )}
       <UploadPageInnerDiv>
         <Outlet />
       </UploadPageInnerDiv>

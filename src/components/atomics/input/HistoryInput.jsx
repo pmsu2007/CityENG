@@ -1,12 +1,12 @@
-import { ProductFilterinput } from "../../../styledComponents";
+import { Historyinput } from "../../../styledComponents";
 import { useState } from "react";
 
-const ProductTimeInput = ({ ...props }) => {
+const HistoryInput = ({ ...props }) => {
   const [inputValue, setInputValue] = useState();
 
   return (
     <>
-      <ProductFilterinput
+      <Historyinput
         type="date"
         value={inputValue || ""}
         onChange={(e) => {
@@ -20,4 +20,4 @@ const ProductTimeInput = ({ ...props }) => {
   );
 };
 
-export default ProductTimeInput;
+export default HistoryInput;

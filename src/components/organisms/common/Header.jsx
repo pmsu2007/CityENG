@@ -1,9 +1,9 @@
 import { HeaderDiv, HeaderTitle, HeaderButton } from "../../../styledComponents";
 
-const Header = ({text}) => {
+const Header = ({text, type}) => {
   return (
     <>
-      <HeaderDiv>
+      <HeaderDiv type={type}>
         <HeaderTitle>{text}</HeaderTitle>
       </HeaderDiv>
     </>

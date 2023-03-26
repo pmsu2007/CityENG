@@ -31,7 +31,7 @@ const Attribute = () => {
   });
 
   const attrs = useAttrList(id);
-  console.log(attrs);
+  // console.log(attrs);
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });

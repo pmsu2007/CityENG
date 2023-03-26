@@ -2,7 +2,7 @@ import { ProductFilterinput } from "../../../styledComponents";
 import { useState } from "react";
 
 const ProductFilterInput = ({ ...props }) => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   return (
     <>
       <ProductFilterinput

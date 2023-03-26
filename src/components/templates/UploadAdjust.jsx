@@ -39,11 +39,12 @@ import {
   
     const getSelectProduct = (obj) => {
       const findIdx = selectProducts.findIndex(
-        (selectProduct) => selectProduct.id === obj.id
+        (selectProduct) => selectProduct.productId === obj.productId
       );
-      if (findIdx > 0) {
+      if (findIdx >= 0) {
         let copy = [...selectProducts];
-        copy[findIdx] = { ...copy[findIdx], value: obj.value };
+        copy[findIdx].quantity = obj.quantity
+        copy[findIdx].toQuantity = obj.toQuantity
         setSelectProducts(copy);
       } else {
         setSelectProducts([...selectProducts, obj]);
@@ -54,12 +55,10 @@ import {
       if (!productId.includes(obj)) {
         setProductId([...productId, obj]);
       }
-      // console.log(productId);
     };
   
     const deleteProductId = (obj) => {
-      setProductId(productId.filter((i) => i !== obj));
-      // console.log(productId);
+      setProductId(productId.filter((i) => i !== obj)); 
     };
   
     const getBodyResult = (obj) => {
@@ -143,16 +142,6 @@ import {
               </ProductAddListDiv>
             ) : (
               <ProductSelectListDiv>
-                {/* {selectProducts &&
-                  selectProducts.map((product) => (
-                    <ProductSelectItem
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      places={product.places}
-                      place={body.place}
-                    />
-                  ))} */}
                 {products &&
                   products
                     .filter((product) => productId.includes(product.id))

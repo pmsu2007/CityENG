@@ -2,12 +2,12 @@ import { Attrinput } from "../../../styledComponents";
 import { useState } from "react";
 
 const AttrInput = ({ ...props }) => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <>
       <Attrinput
-        value={inputValue || ""}
+        value={inputValue}
         onChange={(e) => {
           setInputValue(e.target.value);
         }}

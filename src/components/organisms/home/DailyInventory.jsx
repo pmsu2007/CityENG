@@ -6,15 +6,11 @@ import {
 import DailyInventoryUnit from "../../atomics/home/DailyInventoryUnit";
 
 const DailyInventory = () => {
+  const date = new Date();
   return (
     <>
       <DailyInventoryDiv>
-        <DailyInventoryTitle>1월 11일</DailyInventoryTitle>
-        <DailyInventoryListDiv>
-          <DailyInventoryUnit text="총 재고 수" count={13} />
-          <DailyInventoryUnit text="입고" count={0} />
-          <DailyInventoryUnit text="출고" count={0} />
-        </DailyInventoryListDiv>
+        <DailyInventoryTitle>{`${date.getMonth() + 1}월 ${date.getDate()}일`}</DailyInventoryTitle>
       </DailyInventoryDiv>
     </>
   );

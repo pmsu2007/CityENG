@@ -9,7 +9,9 @@ const PlaceItem = ({id, name, isDelete}) => {
     
     
     const onDeleteClick = () => {
+      if (window.confirm("삭제 하시겠습니까?")){
         sendDeleteRequest();
+      }
     }
 
     const sendDeleteRequest = async () => {

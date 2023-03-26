@@ -17,6 +17,8 @@ import UploadMove from "./components/templates/UploadMove";
 import UploadAdjust from "./components/templates/UploadAdjust";
 import History from "./components/templates/History";
 import HistoryDetail from "./components/templates/HistoryDetail";
+import Setting from "./components/templates/Setting";
+import SettingRole from "./components/templates/SettingRole";
 
 function App() {
   return (
@@ -46,6 +48,13 @@ function App() {
 
             {/* 히스토리 상세 페이지 */}
             <Route path="history/:product_id" element={<HistoryDetail />} />
+
+            {/* 설정 목록 페이지 */}
+            <Route path="setting" element={<Setting />} />
+            
+            {/* 역할 관리 페이지 */}
+            <Route path="setting/role" element={<SettingRole />} />
+        
           </Route>
 
           {/* 등록 페이지 */}

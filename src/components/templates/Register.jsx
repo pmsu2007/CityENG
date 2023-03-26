@@ -7,21 +7,20 @@ import {
   RegisterTitleDiv,
   RegisterButton,
 } from "../../styledComponents";
+import { APIURL } from "../../config/key";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [name, setName] = useState("");
 
-  const validatePwd = (password) => {
-    return password
-      .toLowerCase()
-      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
-  };
+  const navigate = useNavigate();
 
-  const validateNickname = (nickname) => {
-    return nickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,8}$/);
+  const validateName = (name) => {
+    return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,8}$/);
   };
 
   const onChangeId = useCallback((e) => {
@@ -42,32 +41,34 @@ const Register = () => {
   }, [setConfirmPwd]);
 
   //닉네임
-  const onChangeNickname = useCallback((e) => {
-    const currNickname = e.target.value;
-    setNickname(currNickname);
-  }, [setNickname]);
+  const onChangeName = useCallback((e) => {
+    const currName = e.target.value;
+    setName(currName);
+  }, [setName]);
 
-  const isPwdValid = validatePwd(pwd);
+  //  const isPwdValid = validatePwd(pwd);
   const isConfirmPwd = pwd === confirmPwd;
-  const isNicknameValid = validateNickname(nickname);
-  const isAllValid = id && isPwdValid && isConfirmPwd && isNicknameValid;
+  const isNameValid = validateName(name);
+  const isAllValid = id && pwd && isConfirmPwd && isNameValid;
 
   // 회원가입 요청 API
   const registerRequest = async () => {
-    // const body = {
-    //   id: id,
-    //   pwd: pwd,
-    //   nickname: nickname,
-    // };
+    const body = {
+      id: id,
+      password: pwd,
+      authentication: "SIGNIN",
+      name: name,
+      email: "",
+    };
 
-    //const res = await axios.post(`${APIURL}/register/${body.filter}`, body);
-
-    // if (res.data.success) {
-    //   alert("회원가입 성공! 환영합니다.");
-    //   goLogin();
-    // } else {
-    //   alert("이미 존재하는 이메일입니다.");
-    // }
+    const res = await axios.post(`${APIURL}/api/user`, body);
+    console.log(res);
+    if (res.status === 201) {
+      alert("회원가입 성공! 환영합니다.");
+      navigate(`/`)
+    } else {
+      alert("이미 존재하는 회원입니다.");
+    }
   };
   
 
@@ -89,8 +90,8 @@ const Register = () => {
             type="text"
             id="inputNickname"
             autoComplete="nope"
-            value={nickname}
-            onChange={onChangeNickname}
+            value={name}
+            onChange={onChangeName}
           />
         </RegisterInputDiv>
         <RegisterInputDiv>

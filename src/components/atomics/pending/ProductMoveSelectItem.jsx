@@ -1,4 +1,7 @@
-import { ProductSelectItemDiv } from "../../../styledComponents";
+import {
+  ProductSelectItemDiv,
+  ProductSelectItemInnerDiv,
+} from "../../../styledComponents";
 import ProductMoveQuantityInput from "../input/ProductMoveQuantityInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -15,20 +18,22 @@ const ProductMoveSelectItem = ({
   return (
     <>
       <ProductSelectItemDiv>
-        <div>{name}</div>
-        <div style={{ color: "#4f67ff" }}>{quantity}</div>
+        <ProductSelectItemInnerDiv>
+          <div>{name}</div>
+          <div style={{ color: "#4f67ff" }}>{quantity}</div>{" "}
+          <FontAwesomeIcon
+            icon={faXmark}
+            onClick={() => {
+              onClick(Number(id));
+            }}
+          />
+        </ProductSelectItemInnerDiv>
         <ProductMoveQuantityInput
           productId={id}
           getResult={getResult}
           quantity={quantity}
           toPlace={toPlace}
           fromPlace={fromPlace}
-        />
-        <FontAwesomeIcon
-          icon={faXmark}
-          onClick={() => {
-            onClick(Number(id));
-          }}
         />
       </ProductSelectItemDiv>
     </>

@@ -15,6 +15,7 @@ export const MainPageInnerDiv = styled.div`
   align-items: center;
   width: calc(100% - 40px);
   height: auto;
+  margin-bottom: 70px;
 `;
 
 // Common ======================================
@@ -244,6 +245,30 @@ export const HeaderDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${(props) => {
+    if (props.type === "IN" || props.type === "in") {
+      return css`
+        border-color: #50a4fa;
+        color: #50a4fa;
+      `;
+    } else if (props.type === "OUT" || props.type === "out") {
+      return css`
+        border-color: #fb6164;
+        color: #fb6164;
+      `;
+    } else if (props.type === "ADJUST" || props.type === "adjust") {
+      return css`
+        border-color: #3cb9a0;
+        color: #3cb9a0;
+      `;
+    } else if (props.type === "MOVE" || props.type === "move") {
+      return css`
+        border-color: #f5a623;
+        color: #f5a623;
+      `;
+    }
+  }}
 `;
 
 export const HeaderTitle = styled.div`
@@ -293,6 +318,18 @@ export const NavigationBtnDiv = styled.div`
   cursor: pointer;
   position: relative;
   z-index: 10;
+`;
+
+export const SettingNavBtnDiv = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
 `;
 
 // Home ==========================================
@@ -366,6 +403,25 @@ export const HomeMenuItemDiv = styled.div`
 export const HomeMenuIcon = styled.div`
   width: 35px;
   text-align: center;
+  ${(props) => {
+    if (props.type === "in") {
+      return css`
+        color: #50a4fa;
+      `;
+    } else if (props.type === "out") {
+      return css`
+        color: #fb6164;
+      `;
+    } else if (props.type === "adjust") {
+      return css`
+        color: #3cb9a0;
+      `;
+    } else if (props.type === "move") {
+      return css`
+        color: #f5a623;
+      `;
+    }
+  }}
 `;
 
 export const HomeMenuText = styled.div`
@@ -600,7 +656,7 @@ export const InventoryItemQuantityDiv = styled.div`
 
 export const ProductDiv = styled.div`
   width: 100%;
-  margin-top: 70px;
+  margin: 70px 0;
   display: flex;
   flex-direction: column;
 `;
@@ -956,15 +1012,23 @@ export const ProductSelectListDiv = styled.div`
 export const ProductSelectItemDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 80px;
+  height: 100px;
   background-color: #eee;
   border-radius: 8px;
   padding: 10px 15px;
   margin: 10px 0;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const ProductSelectItemInnerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 export const ProductFilterinput = styled.input`
@@ -987,9 +1051,6 @@ export const ProductQuantityinput = styled.input`
   background-color: white;
   font-size: 14px;
   border-radius: 12px;
-  &:focus {
-    outline: none;
-  }
 `;
 
 // History
@@ -1024,7 +1085,6 @@ export const HistoryItemDiv = styled.div`
 
 export const HistoryItemHeaderDiv = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 5px 0;
 `;
@@ -1041,7 +1101,6 @@ export const HistoryItemMemoDiv = styled.div`
 `;
 
 export const HistoryItemCircle = styled.div`
-
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -1055,14 +1114,128 @@ export const HistoryItemCircle = styled.div`
       return css`
         background-color: #fb6164;
       `;
-    }else if (props.type === "ADJUST") {
+    } else if (props.type === "ADJUST") {
       return css`
         background-color: #3cb9a0;
       `;
-    }else if (props.type === "MOVE") {
+    } else if (props.type === "MOVE") {
       return css`
         background-color: #f5a623;
       `;
     }
   }}
+`;
+
+export const HistoryDetailDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HistoryDetailHeaderDiv = styled.div`
+  width: 100%;
+  display: flex;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const HistoryDetailTimeDiv = styled.div`
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+`;
+export const HistoryDetailMemoDiv = styled.div`
+  width: 100%;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  padding-bottom: 10px;
+`;
+
+export const HistoryDetailTag = styled.div`
+  background-color: #ddd;
+  color: black;
+  border-radius: 8px;
+  width: 70px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 14px;
+  line-height: 18px;
+`;
+
+export const HistoryDetailItemDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+`;
+
+export const Historyselect = styled.select`
+  width: 100%;
+  padding: 0.6em 0.6em;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px solid black;
+  font-size: 16px;
+`;
+export const HistoryOption = styled.option``;
+
+export const Historyinput = styled.input`
+  width: 40%;
+  line-height: normal;
+  padding: 0.8em 0.8em;
+  background-color: white;
+  font-size: 12px;
+  border-radius: 12px;
+  border: 2px solid black;
+  margin-bottom: 5px;
+`;
+
+export const HistoryInputInnerDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin 10px 0;
+`;
+
+export const HistorySearchBtn = styled.div`
+  background-color: #4f67ff;
+  color: white;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+`;
+// Setting
+
+export const SettingDiv = styled.div`
+  width: 100%;
+  margin: 70px 0;
+`;
+
+export const SettingListDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

@@ -39,11 +39,12 @@ const UploadOut = ({ type }) => {
 
   const getSelectProduct = (obj) => {
     const findIdx = selectProducts.findIndex(
-      (selectProduct) => selectProduct.id === obj.id
+      (selectProduct) => selectProduct.productId === obj.productId
     );
-    if (findIdx > 0) {
+    if (findIdx >= 0) {
       let copy = [...selectProducts];
-      copy[findIdx] = { ...copy[findIdx], value: obj.value };
+      copy[findIdx].quantity = obj.quantity
+      copy[findIdx].toQuantity = obj.toQuantity
       setSelectProducts(copy);
     } else {
       setSelectProducts([...selectProducts, obj]);
