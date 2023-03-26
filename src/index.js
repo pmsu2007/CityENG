@@ -5,17 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { BrowserView, MobileView } from "react-device-detect";
-
+import { CookiesProvider } from "react-cookie";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <BrowserView>
-      <App />
-    </BrowserView>
-    <MobileView>
-      <App />
-    </MobileView>
-  </BrowserRouter>
+  <CookiesProvider>
+    <BrowserRouter>
+      <BrowserView>
+        <App />
+      </BrowserView>
+      <MobileView>
+        <App />
+      </MobileView>
+    </BrowserRouter>
+  </CookiesProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
