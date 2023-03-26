@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useCallback } from "react";
 import { APIURL } from "../../config/key";
 import axios from "axios";
+import { setCookie } from "../../config/cookie";
 
 const Login = () => {
   const [id, setId] = useState("");
