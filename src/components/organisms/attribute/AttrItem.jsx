@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { APIURL } from "../../../config/key";
+import { getCookie } from "../../../config/cookie";
 
-const AttrItem = ({ id, name, type, isDelete }) => {
+const AttrItem = ({ id, name, type, isDelete, team_id }) => {
   const onDeleteClick = () => {
     if (window.confirm("삭제하시겠습니까?")) {
       sendDeleteRequest();
@@ -18,7 +19,11 @@ const AttrItem = ({ id, name, type, isDelete }) => {
   };
 
   const sendDeleteRequest = async () => {
-    const res = await axios.delete(`${APIURL}/api/teams/attrs/${id}`);
+    const res = await axios.delete(`${APIURL}/api/teams/${team_id}/attrs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
     if (res.status === 204) {
       window.location.reload();
     } else {

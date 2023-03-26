@@ -17,6 +17,7 @@ import { APIURL } from "../../config/key";
 import { typeData } from "../../data";
 import AttrInput from "../atomics/input/AttrInput";
 import AttrSelect from "../atomics/select/AttrSelect";
+import { getCookie } from "../../config/cookie";
 
 const Attribute = () => {
   const param = useParams();
@@ -39,10 +40,18 @@ const Attribute = () => {
   };
 
   const sendCreateRequest = async () => {
-    const res = await axios.post(`${APIURL}/api/teams/${id}/attr`, {
-      name: body.name,
-      type: body.type,
-    });
+    const res = await axios.post(
+      `${APIURL}/api/teams/${id}/attr`,
+      {
+        name: body.name,
+        type: body.type,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
 
     if (res.status === 201) {
       window.location.reload();
@@ -71,6 +80,7 @@ const Attribute = () => {
                 name={attr.name}
                 type={attr.type}
                 isDelete={isDelete}
+                team_id={id}
               />
             ))}
         </AttrListDiv>
@@ -78,7 +88,11 @@ const Attribute = () => {
           <AttrInputDiv>
             <AttrInput name="name" getResult={getBodyResult} />
             <AttrInnerInputDiv>
-              <AttrSelect options={typeData} name="type" getResult={getBodyResult}/>
+              <AttrSelect
+                options={typeData}
+                name="type"
+                getResult={getBodyResult}
+              />
               <AttrInputButton
                 onClick={() => {
                   setAddToggle((e) => !e);
