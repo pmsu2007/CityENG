@@ -9,6 +9,8 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { useState, useCallback } from "react";
+import { APIURL } from "../../config/key";
+import axios from "axios";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -16,10 +18,21 @@ const Login = () => {
   
   const navigate = useNavigate();
 
-  const onSubmit = () => {
-    navigate('/teams');
-  }
+  const onSubmit = async () => {
+    const body = {
+      username: id,
+      password: pwd
+    }
 
+    const res = await axios.post(`${APIURL}/api/signin`, body);
+    console.log(res)
+    if (res.status === 200) {
+      setCookie("key", res.data.apikey)
+      navigate('/teams');
+    } else {
+      console.log("위치 등록 실패");
+    }
+  }
   const goRegister = () => {
     navigate('/register');
   }
