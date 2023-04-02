@@ -6,14 +6,17 @@ import {
   RegisterInput,
   RegisterTitleDiv,
   RegisterButton,
+  RegisterInnerInputDiv,
 } from "../../styledComponents";
 import { APIURL } from "../../config/key";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../config/cookie";
+import { useEffect } from "react";
 
 const Register = () => {
   const [id, setId] = useState("");
+  const [existId, setExistId] = useState(false);
   const [pwd, setPwd] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [name, setName] = useState("");
@@ -79,7 +82,7 @@ const Register = () => {
         Authorization: `Bearer ${getCookie("key")}`,
       },
     });
-    console.log(res);
+
     if (res.status === 201) {
       alert("회원가입 성공! 환영합니다.");
       navigate(`/`);
@@ -96,50 +99,93 @@ const Register = () => {
     }
   };
 
+  const idExistRequest = async () => {
+    const res = await axios.get(`${APIURL}/api/user/exist-id/${id}`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
+    console.log(res);
+    if (res.status === 200) {
+      setExistId(res.data.result);
+    } else {
+      alert("");
+    }
+  };
+
+  useEffect(() => {
+    idExistRequest();
+  }, [id]);
+
   return (
     <>
       <RegisterTitleDiv>회원가입</RegisterTitleDiv>
       <RegisterDiv>
-        <RegisterInputDiv>
-          <RegisterLabel htmlFor="inputNickname">이름</RegisterLabel>
-          <RegisterInput
-            type="text"
-            id="inputNickname"
-            autoComplete="nope"
-            value={name}
-            onChange={onChangeName}
-          />
-        </RegisterInputDiv>
-        <RegisterInputDiv>
-          <RegisterLabel htmlFor="inputId">아이디</RegisterLabel>
-          <RegisterInput
-            type="text"
-            id="inputId"
-            autoComplete="nope"
-            value={id}
-            onChange={onChangeId}
-          />
-        </RegisterInputDiv>
-        <RegisterInputDiv>
-          <RegisterLabel htmlFor="inputPwd">비밀번호</RegisterLabel>
-          <RegisterInput
-            type="password"
-            id="inputPwd"
-            autoComplete="nope"
-            value={pwd}
-            onChange={onChangePwd}
-          />
-        </RegisterInputDiv>
-        <RegisterInputDiv>
-          <RegisterLabel htmlFor="inputConfirmPwd">비밀번호 확인</RegisterLabel>
-          <RegisterInput
-            type="password"
-            id="inputConfirmPwd"
-            autoComplete="nope"
-            value={confirmPwd}
-            onChange={onChangeConfirmPwd}
-          />
-        </RegisterInputDiv>
+        <RegisterInnerInputDiv>
+          <RegisterInputDiv>
+            <RegisterLabel htmlFor="inputNickname">이름</RegisterLabel>
+            <RegisterInput
+              type="text"
+              id="inputNickname"
+              autoComplete="nope"
+              value={name}
+              onChange={onChangeName}
+            />
+          </RegisterInputDiv>
+        </RegisterInnerInputDiv>
+        <RegisterInnerInputDiv>
+          <RegisterInputDiv
+            style={{
+              width: "100%",
+            }}
+          >
+            <RegisterLabel htmlFor="inputId">아이디</RegisterLabel>
+            <RegisterInput
+              type="text"
+              id="inputId"
+              autoComplete="nope"
+              value={id}
+              onChange={onChangeId}
+            />
+          </RegisterInputDiv>
+          <div style={{
+            color:"red",
+            fontSize: "12px",
+            textAlign: "end",
+            
+          }}>
+            {existId
+              ? "* 사용중인 아이디 입니다."
+              : "* 사용 가능한한 아이디 입니다."}
+          </div>
+        </RegisterInnerInputDiv>
+
+        <RegisterInnerInputDiv>
+          <RegisterInputDiv>
+            <RegisterLabel htmlFor="inputPwd">비밀번호</RegisterLabel>
+            <RegisterInput
+              type="password"
+              id="inputPwd"
+              autoComplete="nope"
+              value={pwd}
+              onChange={onChangePwd}
+            />
+          </RegisterInputDiv>
+        </RegisterInnerInputDiv>
+        <RegisterInnerInputDiv>
+          <RegisterInputDiv>
+            <RegisterLabel htmlFor="inputConfirmPwd">
+              비밀번호 확인
+            </RegisterLabel>
+            <RegisterInput
+              type="password"
+              id="inputConfirmPwd"
+              autoComplete="nope"
+              value={confirmPwd}
+              onChange={onChangeConfirmPwd}
+            />
+          </RegisterInputDiv>
+        </RegisterInnerInputDiv>
         <RegisterButton onClick={onSubmit}>등록</RegisterButton>
       </RegisterDiv>
     </>

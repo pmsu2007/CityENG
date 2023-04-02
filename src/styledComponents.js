@@ -200,10 +200,16 @@ export const RegisterDiv = styled.div`
 export const RegisterInputDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
-  margin-bottom: 35px;
+  width: 100%;
   align-items: center;
 `;
+
+export const RegisterInnerInputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-bottom: 35px;
+`
 
 export const RegisterInput = styled.input`
   width: 55%;

@@ -51,7 +51,7 @@ console.log(teamUsers);
               {users &&
                 users
                   .filter((item) =>
-                    teamUsers.filter(
+                    teamUsers && teamUsers.filter(
                       (teamUser) => teamUser.userId === item.id
                     ).length > 0
                   )
