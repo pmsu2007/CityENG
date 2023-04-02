@@ -16,7 +16,6 @@ const TeamSelect = () => {
       <TeamSelectDiv>
         <TeamSelectHeaderDiv>
           <TeamSelectTitleDiv>팀 선택</TeamSelectTitleDiv>
-          <TeamSelectButton> + </TeamSelectButton>
         </TeamSelectHeaderDiv>
         <TeamSelectListDiv>
           {teams && teams.map((team) => (<TeamSelectItem key={team.id} team={team} />))}

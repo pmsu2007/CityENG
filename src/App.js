@@ -19,6 +19,7 @@ import History from "./components/templates/History";
 import HistoryDetail from "./components/templates/HistoryDetail";
 import Setting from "./components/templates/Setting";
 import SettingRole from "./components/templates/SettingRole";
+import SettingInvite from "./components/templates/SettingInvite";
 
 function App() {
   return (
@@ -54,6 +55,9 @@ function App() {
             
             {/* 역할 관리 페이지 */}
             <Route path="setting/role" element={<SettingRole />} />
+
+            {/* 역할 관리 페이지 */}
+            <Route path="setting/invite" element={<SettingInvite />} />
         
           </Route>
 

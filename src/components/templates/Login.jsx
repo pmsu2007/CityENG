@@ -20,6 +20,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async () => {
+
+    if (!id || !pwd) {
+      alert("아이디와 비밀번호를 확인해주세요")
+    }
+    
     const body = {
       username: id,
       password: pwd
@@ -48,6 +53,12 @@ const Login = () => {
     const currPwd = e.target.value;
     setPwd(currPwd);
   }, [setPwd]);
+
+  const onKeyUp = (e) => {
+    if(e.key === "Enter"){
+      onSubmit()
+    }
+  }
   return (
     <>
       <LoginDiv>
@@ -69,6 +80,7 @@ const Login = () => {
             autoComplete="nope"
             value={pwd}
             onChange={onChangePwd}
+            onKeyUp={onKeyUp}
           />
         </LoginInputDiv>
         <LoginButton onClick={onSubmit}>로그인</LoginButton>

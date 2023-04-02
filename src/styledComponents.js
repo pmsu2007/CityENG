@@ -34,7 +34,7 @@ export const CautionDiv = styled.div`
   border: 1px solid black;
   line-height: 18px;
   margin-bottom: 10px;
-`
+`;
 
 // Entry =======================================
 export const EntryDiv = styled.div`
@@ -350,7 +350,7 @@ export const SettingNavBtnDiv = styled.div`
 export const DailyInventoryDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 120px;
+  height: 100px;
   border: 2px solid black;
   border-radius: 10px;
   background-color: #eee;
@@ -1250,3 +1250,78 @@ export const SettingListDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const SettingListInnerDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SettingUserItemDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid black;
+  margin: 10px 0;
+`;
+
+export const SettingInviteButton = styled.div`
+  color: white;
+  background-color: black;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid black;
+`;
+export const InvisibleSettingInviteButton = styled.div`
+  visibility: hidden;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid black;
+`;
+export const RoleItemDiv = styled.div`
+  box-sizing: border-box;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 160px;
+  background-color: #eee;
+  border-radius: 8px;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+`;
+
+export const RolePermissionListDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 90%;
+  border: 1px solid black;
+`;
+
+export const RolePermissionItemDiv = styled.div`
+  width: 40%;
+  text-align: start;
+  line-height: 22px;
+`;
+
+export const Inviteselect = styled.select`
+  width: 30%;
+  padding: 0.8em 0.8em;
+  background-color: #eee;
+  border-radius: 12px;
+  font-size: 14px;
+  border: none;
+`;
+export const InviteOption = styled.option``;
