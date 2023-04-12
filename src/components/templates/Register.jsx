@@ -156,7 +156,7 @@ const Register = () => {
           }}>
             {existId
               ? "* 사용중인 아이디 입니다."
-              : "* 사용 가능한한 아이디 입니다."}
+              : "* 사용 가능한 아이디 입니다."}
           </div>
         </RegisterInnerInputDiv>
 

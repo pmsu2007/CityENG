@@ -29,7 +29,6 @@ const UploadInventory = () => {
 
   const [body, setBody] = useState({
     name: "",
-    barcode: "",
     place: "",
     quantity: 0,
   });
@@ -64,7 +63,6 @@ const UploadInventory = () => {
   const sendRequest = async () => {
     const requestBody = {
       name: body.name,
-      barcode: body.barcode,
       places: [
         {
           id: body.place,
@@ -113,10 +111,6 @@ const UploadInventory = () => {
         <UploadInputInnerDiv>
           <UploadLabel>제품명</UploadLabel>
           <UploadInput name="name" getResult={getBodyResult} />
-        </UploadInputInnerDiv>
-        <UploadInputInnerDiv>
-          <UploadLabel>바코드</UploadLabel>
-          <UploadInput name="barcode" getResult={getBodyResult} />
         </UploadInputInnerDiv>
 
         <UploadInventoryAttrDiv>
