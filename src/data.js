@@ -5,30 +5,30 @@ export const filterData = [
 ];
 
 export const uploadHeader = [
-  { keyword:"inventory", text: "제품 등록" },
-  { keyword:"in", text: "입고서" },
-  { keyword:"out", text: "출고서" },
-  { keyword:"move", text: "재고 이동" },
-  { keyword:"adjust", text: "조정서" },
+  { keyword: "inventory", text: "제품 등록" },
+  { keyword: "in", text: "입고서" },
+  { keyword: "out", text: "출고서" },
+  { keyword: "move", text: "재고 이동" },
+  { keyword: "adjust", text: "조정서" },
 ];
 
 export const typeData = [
   { id: "STRING", name: "텍스트" },
-  { id: "NUMBER", name: "숫자"},
-  { id: "DATETIME", name: "날짜"},
+  { id: "NUMBER", name: "숫자" },
+  { id: "DATETIME", name: "날짜" },
 ];
 
 export const pendingType = [
-  { type: "IN", name: "입고"},
-  { type: "OUT", name: "출고"},
-  { type: "MOVE", name: "이동"},
-  { type: "ADJUST", name: "조정"}
-]
+  { type: "IN", name: "입고" },
+  { type: "OUT", name: "출고" },
+  { type: "MOVE", name: "이동" },
+  { type: "ADJUST", name: "조정" },
+];
 
 export const roleType = [
   { type: "admin", name: "관리자" },
-  { type: "member", name: "사용자" }
-]
+  { type: "member", name: "사용자" },
+];
 
 export const permissionType = [
   { type: "PLACE", name: "위치 설정" },
@@ -39,4 +39,5 @@ export const permissionType = [
   { type: "PENDING_OUT", name: "출고" },
   { type: "PENDING_IN", name: "입고" },
   { type: "PRODUCT", name: "제품 등록" },
-]
+];
+

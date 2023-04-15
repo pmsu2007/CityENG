@@ -6,7 +6,6 @@ import {
   AttrAddButton,
   AttrInputDiv,
   AttrInputButton,
-  AttrInnerInputDiv,
 } from "../../styledComponents";
 import { useState } from "react";
 import useAttrList from "../../hooks/useAttrList";
@@ -14,9 +13,7 @@ import { useParams } from "react-router-dom";
 import AttrItem from "../organisms/attribute/AttrItem";
 import axios from "axios";
 import { APIURL } from "../../config/key";
-import { typeData } from "../../data";
 import AttrInput from "../atomics/input/AttrInput";
-import AttrSelect from "../atomics/select/AttrSelect";
 import { getCookie } from "../../config/cookie";
 
 const Attribute = () => {
@@ -44,7 +41,7 @@ const Attribute = () => {
       `${APIURL}/api/teams/${id}/attr`,
       {
         name: body.name,
-        type: body.type,
+        type: "STRING",
       },
       {
         headers: {
@@ -56,7 +53,7 @@ const Attribute = () => {
     if (res.status === 201) {
       window.location.reload();
     } else {
-      console.log("위치 등록 실패");
+      console.log("속성 등록 실패");
     }
   };
 
@@ -87,21 +84,14 @@ const Attribute = () => {
         {addToggle ? (
           <AttrInputDiv>
             <AttrInput name="name" getResult={getBodyResult} />
-            <AttrInnerInputDiv>
-              <AttrSelect
-                options={typeData}
-                name="type"
-                getResult={getBodyResult}
-              />
-              <AttrInputButton
-                onClick={() => {
-                  setAddToggle((e) => !e);
-                  sendCreateRequest();
-                }}
-              >
-                등록
-              </AttrInputButton>
-            </AttrInnerInputDiv>
+            <AttrInputButton
+              onClick={() => {
+                setAddToggle((e) => !e);
+                sendCreateRequest();
+              }}
+            >
+              등록
+            </AttrInputButton>
           </AttrInputDiv>
         ) : (
           <AttrAddButton

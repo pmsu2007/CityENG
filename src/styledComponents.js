@@ -209,7 +209,7 @@ export const RegisterInnerInputDiv = styled.div`
   flex-direction: column;
   width: 70%;
   margin-bottom: 35px;
-`
+`;
 
 export const RegisterInput = styled.input`
   width: 55%;
@@ -745,22 +745,16 @@ export const AttrInputDiv = styled.div`
   box-sizing: border-box;
   border: 2px solid black;
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  height: 110px;
+  height: 60px;
   background-color: #eee;
   border-radius: 8px;
   padding: 5px 15px;
-`;
-
-export const AttrInnerInputDiv = styled.div`
-  width: 100%;
-  display: flex;
   justify-content: space-between;
 `;
 
+
 export const Attrinput = styled.input`
-  width: 90%;
+  width: 70%;
   line-height: normal;
   padding: 0.8em 0.8em;
   background-color: white;
@@ -769,7 +763,6 @@ export const Attrinput = styled.input`
   &:focus {
     outline: none;
   }
-  margin-bottom: 10px;
 `;
 
 export const Attrselect = styled.select`
@@ -882,6 +875,7 @@ export const UploadAttrInputDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 90%;
 `;
 
 export const Uploadinput = styled.input`
