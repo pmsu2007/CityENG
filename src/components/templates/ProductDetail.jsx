@@ -7,13 +7,16 @@ import {
   ProductListDiv,
   ProductTitleDiv,
 } from "../../styledComponents";
-import { useState } from "react";
+import axios from "axios";
+import { getCookie } from "../../config/cookie";
+import { APIURL } from "../../config/key";
 import useProductDetail from "../../hooks/useProductDetail";
 import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const param = useParams();
   const productId = param.product_id;
+  const teamId = param.team_id;
   const detail = useProductDetail(productId);
   // console.log(detail);
 
@@ -21,13 +24,27 @@ const ProductDetail = () => {
     .map((place) => place.quantity)
     .reduce((prev, curr) => prev + curr, 0);
 
-  const [isDelete, setIsDelete] = useState(false);
-  const onDeleteClick = () => {
-    if (!isDelete) {
-      setIsDelete(true);
+  const sendDeleteRequest = async () => {
+    const res = await axios.delete(
+      `${APIURL}/api/teams/${teamId}/products/${productId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
+
+    if (res.status === 204) {
+      window.location.reload();
     } else {
-      setIsDelete(false);
+      console.log("속성 삭제제 실패");
     }
+  };
+
+  const onDeleteClick = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      sendDeleteRequest();
+    } 
   };
   return (
     <>
@@ -40,10 +57,6 @@ const ProductDetail = () => {
           <ProductItemInnerDiv>
             <ProductItemTitle>제품명</ProductItemTitle>
             <div>{detail && detail.name}</div>
-          </ProductItemInnerDiv>
-          <ProductItemInnerDiv>
-            <ProductItemTitle>바코드</ProductItemTitle>
-            <div>{detail && detail.barcode}</div>
           </ProductItemInnerDiv>
           <ProductItemInnerDiv>
             <ProductItemTitle>현재 재고</ProductItemTitle>

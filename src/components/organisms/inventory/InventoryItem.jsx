@@ -7,7 +7,7 @@ import {
   InventoryItemQuantityDiv,
 } from "../../../styledComponents";
 
-const InventoryItem = ({ id, name, img, barcode, places }) => {
+const InventoryItem = ({ id, name, img, places }) => {
   const quantity = places
     .map((place) => place.quantity)
     .reduce((prev, curr) => prev + curr, 0);
@@ -22,7 +22,6 @@ const InventoryItem = ({ id, name, img, barcode, places }) => {
         <InventoryItemInfoDiv>
           <InventoryItemInfoInnerDiv>
             <div>{name}</div>
-            <div>{barcode}</div>
           </InventoryItemInfoInnerDiv>
           <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
         </InventoryItemInfoDiv>

@@ -63,7 +63,7 @@ const UploadInventory = () => {
   const sendRequest = async () => {
     const requestBody = {
       name: body.name,
-      barcode: new Date().getMilliseconds(),
+      barcode: new Date().getTime(),
       places: [
         {
           id: body.place,

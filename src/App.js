@@ -20,6 +20,8 @@ import HistoryDetail from "./components/templates/HistoryDetail";
 import Setting from "./components/templates/Setting";
 import SettingRole from "./components/templates/SettingRole";
 import SettingInvite from "./components/templates/SettingInvite";
+import PlaceInventory from "./components/templates/PlaceInventory";
+
 
 function App() {
   return (
@@ -34,7 +36,10 @@ function App() {
 
             {/* 제품 목록 페이지 */}
             <Route path="inventory" element={<Inventory />} />
-
+             
+            {/* 위치별 제품 목록 페이지 */}
+            <Route path="inventory/place/:place_id" element={<PlaceInventory />} />
+            
             {/* 제품 상세 페이지 */}
             <Route path="inventory/:product_id" element={<ProductDetail />} />
 

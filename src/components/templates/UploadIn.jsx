@@ -145,7 +145,6 @@ const UploadIn = ({ type }) => {
                     id={product.id}
                     name={product.name}
                     img={product.imageUrl}
-                    barcode={product.barcode}
                     places={product.places}
                     getResult={getProductId}
                     setToggle={setProductToggle}

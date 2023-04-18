@@ -26,7 +26,7 @@ const History = () => {
     startDateTime: 0,
     endDateTime: 0,
   });
-
+  console.log(pendings);
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
@@ -87,7 +87,7 @@ const History = () => {
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </HistorySearchBtn>
           {pendings &&
-            pendings.map((pending) => (
+            pendings.reverse().map((pending) => (
               <HistoryItem
                 key={pending.id}
                 id={pending.id}

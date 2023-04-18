@@ -37,24 +37,28 @@ const HistoryItem = ({ id, type, memo, createdAt, products }) => {
   };
   return (
     <>
-      <HistoryItemDiv onClick={goDetail}>
-        <HistoryItemHeaderDiv>
-          <HistoryItemCircle type={type} />
-          <div style={{ fontSize: "20px", marginLeft: "10px" }}>
-            {pendingType.filter((item) => item.type === type)[0].name}
-          </div>
-          <div
-            style={{ fontSize: "14px", marginLeft: "120px" }}
-          >{`${convertDate(date)}`}</div>
-        </HistoryItemHeaderDiv>
-        <HistoryItemContentDiv>
-          <div>{`${products.length} 품목 `}</div>
-          {type && type === "MOVE" ? null : (
-            <div>{` / ${convertNumber(products[0].quantity)}개`}</div>
-          )}
-        </HistoryItemContentDiv>
-        <HistoryItemMemoDiv>{memo}</HistoryItemMemoDiv>
-      </HistoryItemDiv>
+      {products[0].productId === null ? (
+        <HistoryItemDiv>삭제된 품목 입니다.</HistoryItemDiv>
+      ) : (
+        <HistoryItemDiv onClick={goDetail}>
+          <HistoryItemHeaderDiv>
+            <HistoryItemCircle type={type} />
+            <div style={{ fontSize: "20px", marginLeft: "10px" }}>
+              {pendingType.filter((item) => item.type === type)[0].name}
+            </div>
+            <div
+              style={{ fontSize: "14px", marginLeft: "120px" }}
+            >{`${convertDate(date)}`}</div>
+          </HistoryItemHeaderDiv>
+          <HistoryItemContentDiv>
+            <div>{`${products.length} 품목 `}</div>
+            {type && type === "MOVE" ? null : (
+              <div>{` / ${convertNumber(products[0].quantity)}개`}</div>
+            )}
+          </HistoryItemContentDiv>
+          <HistoryItemMemoDiv>{memo}</HistoryItemMemoDiv>
+        </HistoryItemDiv>
+      )}
     </>
   );
 };

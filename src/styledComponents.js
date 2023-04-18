@@ -251,6 +251,16 @@ export const RegisterButton = styled.div`
 
 // Header ======================================
 
+export const PlaceInventoryHeaderDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+`
+
 export const HeaderDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
@@ -553,6 +563,21 @@ export const PlaceInputButton = styled.div`
 
 // Inventory =====================================
 
+export const PlaceInventoryDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+`
+export const PlaceInventoryItemDiv = styled.div`
+  border: 2px solid black;
+  padding: 5px 20px;
+  border-radius: 8px;
+  width: calc(100% / 3);
+  text-align : center;
+`
+
 export const FilterInventoryDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -664,7 +689,7 @@ export const InventoryItemInfoInnerDiv = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const InventoryItemQuantityDiv = styled.div`

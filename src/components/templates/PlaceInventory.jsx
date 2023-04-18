@@ -1,43 +1,32 @@
-import {
-  FilterInventoryDiv,
-  InventoryListDiv,
-  PlaceInventoryDiv,
-  PlaceInventoryItemDiv,
-} from "../../styledComponents";
-import InventoryFilter from "../organisms/inventory/InventoryFilter";
+import { FilterInventoryDiv, InventoryListDiv, PlaceInventoryHeaderDiv } from "../../styledComponents";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { APIURL } from "../../config/key";
 import InventoryItem from "../organisms/inventory/InventoryItem";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getCookie } from "../../config/cookie";
 import usePlaceList from "../../hooks/usePlaceList";
+import { HeaderDiv } from "../../styledComponents";
 
-const Inventory = () => {
-  const [searchText, setSearchText] = useState("");
+const PlaceInventory = () => {
   const [products, setProducts] = useState([]);
 
   const param = useParams();
   const teamId = param.team_id;
-
-  const navigate = useNavigate();
-
+  const placeId = param.place_id;
   const places = usePlaceList(teamId);
+
   const sendRequest = async () => {
-    let query = "";
-    if (searchText) {
-      query = `?value=${searchText}`;
-    }
     const res = await axios.get(
-      `${APIURL}/api/teams/${teamId}/products/page${query}`,
+      `${APIURL}/api/teams/${teamId}/places/${placeId}/products/page`,
       {
         headers: {
           Authorization: `Bearer ${getCookie("key")}`,
         },
       }
     );
-    // console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`)
-    // console.log(res);
+
+    console.log(res.data);
     if (res.status === 200) {
       setProducts(res.data.content);
     } else {
@@ -47,25 +36,19 @@ const Inventory = () => {
 
   useEffect(() => {
     sendRequest();
-  }, [searchText]);
+  }, []);
 
   return (
     <>
       <FilterInventoryDiv>
-        <InventoryFilter getResult={setSearchText} />
-        <PlaceInventoryDiv>
-          {places &&
-            places.map((place) => (
-              <PlaceInventoryItemDiv
-                key={place.id}
-                onClick={() => {
-                  navigate(`place/${place.id}`);
-                }}
-              >
-                {place.name}
-              </PlaceInventoryItemDiv>
-            ))}
-        </PlaceInventoryDiv>
+        {places &&
+          places.map((place) => {
+            if (place.id == placeId)
+              return (
+                <><PlaceInventoryHeaderDiv>{place.name}</PlaceInventoryHeaderDiv>
+                </>
+              );
+          })}
         <InventoryListDiv>
           {products &&
             products.map((product) => (
@@ -84,4 +67,4 @@ const Inventory = () => {
   );
 };
 
-export default Inventory;
+export default PlaceInventory;

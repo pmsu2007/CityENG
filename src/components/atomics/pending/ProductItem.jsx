@@ -2,11 +2,10 @@ import {
   InventoryItemDiv,
   InventoryItemImg,
   InventoryItemInfoDiv,
-  InventoryItemInfoInnerDiv,
   InventoryItemQuantityDiv,
 } from "../../../styledComponents";
 
-const ProductItem = ({ id, name, img, barcode, places, getResult, setToggle }) => {
+const ProductItem = ({ id, name, img, places, getResult, setToggle }) => {
   const quantity = places
     .map((place) => place.quantity)
     .reduce((prev, curr) => prev + curr, 0);
@@ -21,10 +20,7 @@ const ProductItem = ({ id, name, img, barcode, places, getResult, setToggle }) =
       >
         <InventoryItemImg img={img} />
         <InventoryItemInfoDiv>
-          <InventoryItemInfoInnerDiv>
             <div>{name}</div>
-            <div>{barcode}</div>
-          </InventoryItemInfoInnerDiv>
           <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
         </InventoryItemInfoDiv>
       </InventoryItemDiv>
