@@ -96,13 +96,13 @@ export const TeamSelectListDiv = styled.div`
 export const TeamSelectItemDiv = styled.div`
   box-sizing: border-box;
   width: 90%;
-  height: 250px;
+  height: 100px;
   border-radius: 24px;
   background-color: #ababab;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   padding: 20px 0;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 `;

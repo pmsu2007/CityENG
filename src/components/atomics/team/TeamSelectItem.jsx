@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {
-  TeamSelectImgDiv,
   TeamSelectItemDiv,
-  TeamSelectNameDiv,
 } from "../../../styledComponents";
 
 const TeamSelectItem = ({ team }) => {
@@ -13,10 +11,7 @@ const TeamSelectItem = ({ team }) => {
   return (
     <>
       <TeamSelectItemDiv onClick={onTeamClick}>
-        <TeamSelectImgDiv />
-        <TeamSelectNameDiv>
-          <div>{team.name}</div>
-        </TeamSelectNameDiv>
+          <div style={{marginLeft: "15px", fontSize: "20px"}}>{team.name}</div>
       </TeamSelectItemDiv>
     </>
   );
