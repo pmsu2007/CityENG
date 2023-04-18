@@ -55,7 +55,7 @@ const HistoryDetail = () => {
       <HistoryDiv>
         <HistoryDetailDiv>
           <HistoryDetailHeaderDiv>
-            <HistoryDetailTag>place</HistoryDetailTag>
+            <HistoryDetailTag>위치</HistoryDetailTag>
             <div>
               {detail && places && `${convertPlace(detail, places).toText} \b`}
             </div>
@@ -64,12 +64,12 @@ const HistoryDetail = () => {
             </div>
           </HistoryDetailHeaderDiv>
           <HistoryDetailTimeDiv>
-            <HistoryDetailTag>date</HistoryDetailTag>
+            <HistoryDetailTag>날짜</HistoryDetailTag>
             {date &&
               `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`}
           </HistoryDetailTimeDiv>
           <HistoryDetailMemoDiv>
-            <HistoryDetailTag>memo</HistoryDetailTag>
+            <HistoryDetailTag>메모</HistoryDetailTag>
             <div>{detail && detail.memo}</div>
           </HistoryDetailMemoDiv>
           {detail &&

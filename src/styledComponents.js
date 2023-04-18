@@ -29,10 +29,10 @@ export const CautionDiv = styled.div`
   display: flex;
   flex-direction: column;
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px;
   border: 1px solid black;
-  line-height: 18px;
+  line-height: 24px;
   margin-bottom: 10px;
 `;
 
@@ -300,6 +300,7 @@ export const HeaderDiv = styled.div`
 
 export const HeaderTitle = styled.div`
   font-weight: 700;
+  font-size: 24px;
 `;
 
 export const HeaderButton = styled.div`
@@ -574,6 +575,7 @@ export const PlaceInventoryItemDiv = styled.div`
   border: 2px solid black;
   padding: 5px 20px;
   border-radius: 8px;
+  font-size: 20px;
   width: calc(100% / 3);
   text-align : center;
 `
@@ -670,6 +672,8 @@ export const InventoryItemDiv = styled.div`
   margin: 10px 0;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
   display: flex;
+  align-items: center;
+  justify-content:space-between;
 `;
 
 export const InventoryItemImg = styled.img`
@@ -680,20 +684,23 @@ export const InventoryItemImg = styled.img`
 export const InventoryItemInfoDiv = styled.div`
   width: 67%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin: 5px 10px;
 `;
 
 export const InventoryItemInfoInnerDiv = styled.div`
   display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
+  width: 50%;
+  align-items: center;
+  font-size: 20px;
 `;
 
 export const InventoryItemQuantityDiv = styled.div`
   color: #4f67ff;
+  font-size: 24px;
+  margin-right: 10px;
 `;
 
 export const ProductDiv = styled.div`
@@ -715,7 +722,7 @@ export const ProductTitleDiv = styled.div`
   border-bottom: 2px solid black;
   padding: 10px 10px;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 24px;
 `;
 
 export const ProductItemInnerDiv = styled.div`
@@ -730,6 +737,7 @@ export const ProductItemTitle = styled.div`
   padding: 5px;
   background-color: #eee;
   border-radius: 12px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   margin-right: 10px;
@@ -1174,7 +1182,7 @@ export const HistoryDetailDiv = styled.div`
 export const HistoryDetailHeaderDiv = styled.div`
   width: 100%;
   display: flex;
-  font-size: 18px;
+  font-size: 24px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -1182,7 +1190,7 @@ export const HistoryDetailHeaderDiv = styled.div`
 
 export const HistoryDetailTimeDiv = styled.div`
   width: 100%;
-  font-size: 18px;
+  font-size: 24px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -1192,7 +1200,7 @@ export const HistoryDetailMemoDiv = styled.div`
   border-bottom: 2px solid black;
   margin-bottom: 10px;
   display: flex;
-  font-size: 18px;
+  font-size: 24px;
   align-items: center;
   padding-bottom: 10px;
 `;
@@ -1204,8 +1212,8 @@ export const HistoryDetailTag = styled.div`
   width: 70px;
   text-align: center;
   margin-right: 5px;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 18px;
+  line-height: 24px;
 `;
 
 export const HistoryDetailItemDiv = styled.div`

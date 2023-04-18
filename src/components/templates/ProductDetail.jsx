@@ -56,11 +56,11 @@ const ProductDetail = () => {
           <ProductTitleDiv>제품 정보</ProductTitleDiv>
           <ProductItemInnerDiv>
             <ProductItemTitle>제품명</ProductItemTitle>
-            <div>{detail && detail.name}</div>
+            <div style={{fontSize: "20px"}}>{detail && detail.name}</div>
           </ProductItemInnerDiv>
           <ProductItemInnerDiv>
             <ProductItemTitle>현재 재고</ProductItemTitle>
-            <div>{quantity}</div>
+            <div style={{fontSize: "20px"}}>{quantity}</div>
           </ProductItemInnerDiv>
         </ProductListDiv>
         {/* 제품 속성 */}
@@ -69,7 +69,7 @@ const ProductDetail = () => {
           {detail && detail.attributes.map((attribute) => (
             <ProductItemInnerDiv key={attribute.id}>
               <ProductItemTitle>{attribute.name}</ProductItemTitle>
-              <div>{attribute.value}</div>
+              <div style={{fontSize: "20px"}}>{attribute.value}</div>
             </ProductItemInnerDiv>
           ))}
         </ProductListDiv>
@@ -79,7 +79,7 @@ const ProductDetail = () => {
           {detail && detail.places.map((place) => (
             <ProductItemInnerDiv key={place.id}>
               <ProductItemTitle>{place.name}</ProductItemTitle>
-              <div>{place.quantity}</div>
+              <div style={{fontSize: "20px"}}>{place.quantity}</div>
             </ProductItemInnerDiv>
           ))}
         </ProductListDiv>

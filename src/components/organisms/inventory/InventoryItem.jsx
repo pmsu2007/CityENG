@@ -14,17 +14,12 @@ const InventoryItem = ({ id, name, img, places }) => {
   const navigate = useNavigate();
   const goDetail = () => {
     navigate(`${id}`);
-  }
+  };
   return (
     <>
       <InventoryItemDiv onClick={goDetail}>
-        <InventoryItemImg img={img} />
-        <InventoryItemInfoDiv>
-          <InventoryItemInfoInnerDiv>
-            <div>{name}</div>
-          </InventoryItemInfoInnerDiv>
-          <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
-        </InventoryItemInfoDiv>
+        <div style={{marginLeft:"10px", fontSize:"24pxgit"}}>{name}</div>
+        <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
       </InventoryItemDiv>
     </>
   );
