@@ -26,7 +26,7 @@ const History = () => {
     startDateTime: 0,
     endDateTime: 0,
   });
-  console.log(pendings);
+  
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
@@ -51,8 +51,7 @@ const History = () => {
         },
       }
     );
-    // console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`);
-    // console.log(res);
+    
     if (res.status === 200) {
       setPendings(res.data);
     } else {

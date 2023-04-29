@@ -13,7 +13,7 @@ const useProductList = (teamId) => {
     });
 
     if (res.status === 200) setData(res.data.content);
-    // console.log(res.data.content);
+    
   };
 
   useEffect(() => {

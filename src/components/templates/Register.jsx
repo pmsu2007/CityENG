@@ -62,7 +62,6 @@ const Register = () => {
     [setName]
   );
 
-  //  const isPwdValid = validatePwd(pwd);
   const isConfirmPwd = pwd === confirmPwd;
   const isNameValid = validateName(name);
   const isAllValid = id && pwd && isConfirmPwd && isNameValid;

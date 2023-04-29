@@ -19,8 +19,6 @@ const SettingRole = () => {
   const roles = useRoleList(teamId);
   const users = useUserList();
   const teamUsers = useTeamUserList(teamId);
-console.log(users);
-console.log(teamUsers);
 
   const [toggle, setToggle] = useState(false);
   return (

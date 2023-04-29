@@ -32,9 +32,9 @@ const Attribute = () => {
     name: "",
     type: "",
   });
-  // console.log(values)
+  
   const attrs = useAttrList(id);
-  // console.log(attrs);
+  
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
@@ -54,7 +54,7 @@ const Attribute = () => {
       type: "STRING",
       values: values,
     };
-    // console.log(requestBody);
+    
     const res = await axios.post(
       `${APIURL}/api/teams/${id}/attr`,
       requestBody,

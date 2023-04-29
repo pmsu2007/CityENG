@@ -20,9 +20,7 @@ const HistoryDetail = () => {
   const detail = usePendingDetail(productId);
   const places = usePlaceList(teamId);
   const date = new Date(detail && detail.createdAt);
-  console.log(detail); 
-  // console.log(places);
-
+  
   const convertPlace = (item, target) => {
     let toText = "";
     let fromText = "";

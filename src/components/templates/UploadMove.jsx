@@ -61,12 +61,10 @@ const UploadMove = ({ type }) => {
     if (!productId.includes(obj)) {
       setProductId([...productId, obj]);
     }
-    // console.log(productId);
   };
 
   const deleteProductId = (obj) => {
     setProductId(productId.filter((i) => i !== obj));
-    // console.log(productId);
   };
 
   const getResult = (obj) => {
@@ -80,13 +78,7 @@ const UploadMove = ({ type }) => {
   };
 
   const sendRequest = async () => {
-    console.log({
-      id: body.fromPlace,
-      type: type,
-      createdAt: body.createdAt,
-      memo: body.memo,
-      products: selectProducts,
-    });
+
     const res = await axios.post(
       `${APIURL}/api/teams/${teamId}/pending`,
       {
@@ -105,7 +97,6 @@ const UploadMove = ({ type }) => {
 
     if (res.status === 200) {
       navigate(`/team/${teamId}/inventory`);
-      console.log("이동 성공");
     } else {
       console.log("이동 실패");
     }

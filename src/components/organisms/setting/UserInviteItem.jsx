@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 const UserInviteItem = ({ user_id, name, team_id }) => {
   const [invite, setInvite] = useState(true);
   const teamUsers = useTeamUserList(team_id);
-  console.log(teamUsers);
 
   const onInviteClick = () => {
     if (window.confirm("초대하시겠습니까?")) {

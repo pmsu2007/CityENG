@@ -60,7 +60,6 @@ const UploadOut = ({ type }) => {
     if (!productId.includes(obj)) {
       setProductId([...productId, obj]);
     }
-    // console.log(productId);
   };
 
   const getResult = (obj) => {
@@ -69,23 +68,15 @@ const UploadOut = ({ type }) => {
 
   const deleteProductId = (obj) => {
     setProductId(productId.filter((i) => i !== obj));
-    // console.log(productId);
   };
 
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
-    console.log(body);
   };
 
   const sendRequest = async () => {
-    console.log({
-      id: body.place,
-      type: type,
-      createdAt: body.createdAt,
-      memo: body.memo,
-      products: selectProducts,
-    });
+    
     const res = await axios.post(
       `${APIURL}/api/teams/${teamId}/pending`,
       {

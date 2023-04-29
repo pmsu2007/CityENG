@@ -23,7 +23,7 @@ const Inventory = () => {
     first: false,
     last: false
   });
-  //console.log(products);
+  
   const param = useParams();
   const teamId = param.team_id;
 
@@ -43,7 +43,7 @@ const Inventory = () => {
         },
       }
     );
-     console.log(res);
+    
     if (res.status === 200) {
       setProducts(res.data.content);
       setMeta({

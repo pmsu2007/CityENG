@@ -42,7 +42,6 @@ const UploadInventory = () => {
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
-    // console.log(body);
   };
 
   const getAttrResult = (obj) => {
@@ -56,8 +55,6 @@ const UploadInventory = () => {
     } else {
       setAttributes([...attributes, obj]);
     }
-
-    console.log(attributes);
   };
 
   const getPlaceResult =
@@ -85,7 +82,6 @@ const UploadInventory = () => {
       places: getPlaceResult,
       attributes: attributes.slice(1),
     };
-    console.log(requestBody);
     const res = await axios.post(
       `${APIURL}/api/teams/${teamId}/product`,
       requestBody,

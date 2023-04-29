@@ -917,33 +917,42 @@ export const AttrValueTagDiv = styled.div`
   border: 2px solid black;
   padding: 5px;
   border-radius: 8px;
-  margin: 15px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  box-sizing: border-box;
 `;
 
 export const AttrItemDiv = styled.div`
   box-sizing: border-box;
   border: 2px solid black;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 60px;
+  min-height: 80px;
   background-color: #eee;
   border-radius: 8px;
-  padding: 5px 15px;
+  padding: 15px;
   justify-content: space-between;
   margin-bottom: 20px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 `;
 
+export const AttrItemInnerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  jusitify-content: center;
+  align-items: center;
+`
+
 export const AttrItemNameDiv = styled.div`
-  width: 45%;
+  width: 40%;
 `;
 
 export const AttrItemTypeDiv = styled.div`
-  width: 45%;
+  width: 40%;
 `;
 
 export const AttrItemSettingDiv = styled.div``;

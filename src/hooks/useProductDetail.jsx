@@ -13,7 +13,7 @@ const useProductDetail = (productId) => {
     });
 
     if (res.status === 200) setData(res.data);
-    // console.log(res.data);
+     
   };
 
   useEffect(() => {

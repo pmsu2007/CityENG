@@ -1,6 +1,5 @@
 import useTeamList from "../../hooks/useTeamList";
 import {
-  TeamSelectButton,
   TeamSelectDiv,
   TeamSelectHeaderDiv,
   TeamSelectListDiv,

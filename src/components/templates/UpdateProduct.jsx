@@ -26,7 +26,6 @@ const UpdateProduct = () => {
 
   const attrs = useAttrList(teamId);
   const product = useProductDetail(productId);
-  console.log(product);
 
   const [body, setBody] = useState({
     name: "",
@@ -35,7 +34,6 @@ const UpdateProduct = () => {
   const getBodyResult = (obj) => {
     const key = Object.keys(obj);
     setBody({ ...body, [key]: obj[key] });
-    // console.log(body);
   };
 
   const [attributes, setAttributes] = useState([{ id: "", value: "" }]);
@@ -52,7 +50,6 @@ const UpdateProduct = () => {
       setAttributes([...attributes, obj]);
     }
 
-    // console.log(attributes);
   };
 
   const sendRequest = async () => {

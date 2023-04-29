@@ -1,19 +1,39 @@
+import { useParams } from "react-router-dom";
 import { UploadAttrInputDiv } from "../../../styledComponents";
 import ValueSelect from "../select/ValueSelect";
+import { APIURL } from "../../../config/key";
+import { getCookie } from "../../../config/cookie";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const InventoryAttrItem = ({ id, getResult }) => {
-  let values;
+  const [values, setValues] = useState([]);
 
-  if (id == 1) {
-    values = ["도시가스", "LPG", "전기", "가스"];
-  } else if (id == 2) {
-    values = ["일반보일러","콘덴싱보일러","전기온수기", "가스온수기", "업소용"];
-  }
-  
+  const sendRequest = async () => {
+    const res = await axios.get(`${APIURL}/api/teams/attrs/${id}/values`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
+    if (res.status === 200) {
+      setValues(res.data);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, [id]);
+
   return (
     <>
       <UploadAttrInputDiv>
-        <ValueSelect options={values} getResult={getResult} id={id} name="value" />
+        <ValueSelect
+          options={values}
+          getResult={getResult}
+          id={id}
+          name="value"
+        />
       </UploadAttrInputDiv>
     </>
   );

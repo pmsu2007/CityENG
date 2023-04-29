@@ -19,7 +19,6 @@ const ProductDetail = () => {
   const teamId = param.team_id;
   const detail = useProductDetail(productId);
   const navigate = useNavigate();
-  console.log(detail);
 
   const quantity = detail && detail.places
     .map((place) => place.quantity)

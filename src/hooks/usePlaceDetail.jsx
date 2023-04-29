@@ -8,7 +8,6 @@ const usePlaceDetail = (placeId) => {
     const res = await axios.get(`${APIURL}/api/teams/places/${placeId}`);
 
     if (res.status === 200) setData(res.data);
-    // console.log(res.data);
   };
 
   useEffect(() => {

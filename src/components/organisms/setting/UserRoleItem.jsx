@@ -24,10 +24,6 @@ const UserRoleItem = ({ user_id, name, team_id }) => {
   };
 
   const sendRoleRequest = async () => {
-    console.log({
-      userId: user_id,
-      teamRoleId: roleId, // ADMIN : 1, MEMBER: 2
-    });
 
     const res = await axios.put(
       `${APIURL}/api/teams/${team_id}/user`,
