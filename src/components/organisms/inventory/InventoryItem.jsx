@@ -1,9 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import {
   InventoryItemDiv,
-  InventoryItemImg,
-  InventoryItemInfoDiv,
-  InventoryItemInfoInnerDiv,
   InventoryItemQuantityDiv,
 } from "../../../styledComponents";
 
@@ -12,8 +9,10 @@ const InventoryItem = ({ id, name, img, places }) => {
     .map((place) => place.quantity)
     .reduce((prev, curr) => prev + curr, 0);
   const navigate = useNavigate();
+  const param = useParams();
+  const teamId = param.team_id;
   const goDetail = () => {
-    navigate(`${id}`);
+    navigate(`/team/${teamId}/inventory/${id}`);
   };
   return (
     <>

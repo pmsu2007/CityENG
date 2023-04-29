@@ -11,14 +11,15 @@ import axios from "axios";
 import { getCookie } from "../../config/cookie";
 import { APIURL } from "../../config/key";
 import useProductDetail from "../../hooks/useProductDetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const param = useParams();
   const productId = param.product_id;
   const teamId = param.team_id;
   const detail = useProductDetail(productId);
-  // console.log(detail);
+  const navigate = useNavigate();
+  console.log(detail);
 
   const quantity = detail && detail.places
     .map((place) => place.quantity)
@@ -35,9 +36,9 @@ const ProductDetail = () => {
     );
 
     if (res.status === 204) {
-      window.location.reload();
+      navigate(`/team/${teamId}/inventory`);
     } else {
-      console.log("속성 삭제제 실패");
+      console.log("제품 삭제 실패");
     }
   };
 
@@ -46,17 +47,24 @@ const ProductDetail = () => {
       sendDeleteRequest();
     } 
   };
+
+  const onUpdateClick = () => {
+    navigate(`/upload/${teamId}/inventory/${productId}/update`)
+  }
   return (
     <>
       <Header text={"제품"} />
       <HeaderButton onClick={onDeleteClick}>삭제</HeaderButton>
+      <HeaderButton onClick={onUpdateClick} style={{
+        'right': 70
+      }}>수정</HeaderButton>
       <ProductDiv>
         {/* 제품 정보 */}
         <ProductListDiv>
           <ProductTitleDiv>제품 정보</ProductTitleDiv>
           <ProductItemInnerDiv>
             <ProductItemTitle>제품명</ProductItemTitle>
-            <div style={{fontSize: "20px"}}>{detail && detail.name}</div>
+            <div style={{fontSize: "16px"}}>{detail && detail.name}</div>
           </ProductItemInnerDiv>
           <ProductItemInnerDiv>
             <ProductItemTitle>현재 재고</ProductItemTitle>

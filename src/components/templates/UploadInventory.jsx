@@ -34,7 +34,7 @@ const UploadInventory = () => {
   });
 
   const [attributes, setAttributes] = useState([{ id: "", value: "" }]);
-
+  
   const goAttrPage = () => {
     navigate(`/team/${teamId}/attrs`);
   };
@@ -60,16 +60,29 @@ const UploadInventory = () => {
     console.log(attributes);
   };
 
+  const getPlaceResult =
+    places &&
+    places.map((place) => {
+      let obj;
+      if (place.id == body.place) {
+        obj = {
+          id: body.place,
+          quantity: body.quantity,
+        };
+      } else {
+        obj = {
+          id: place.id,
+          quantity: 0,
+        };
+      }
+      return obj;
+    });
+
   const sendRequest = async () => {
     const requestBody = {
       name: body.name,
       barcode: new Date().getTime(),
-      places: [
-        {
-          id: body.place,
-          quantity: Number(body.quantity),
-        },
-      ],
+      places: getPlaceResult,
       attributes: attributes.slice(1),
     };
     console.log(requestBody);
@@ -106,12 +119,12 @@ const UploadInventory = () => {
           />
         </UploadInputInnerDiv>
         <UploadInputInnerDiv>
-          <UploadLabel>수량</UploadLabel>
-          <UploadInput name="quantity" getResult={getBodyResult} />
-        </UploadInputInnerDiv>
-        <UploadInputInnerDiv>
           <UploadLabel>제품명</UploadLabel>
           <UploadInput name="name" getResult={getBodyResult} />
+        </UploadInputInnerDiv>
+        <UploadInputInnerDiv>
+          <UploadLabel>수량</UploadLabel>
+          <UploadInput name="quantity" getResult={getBodyResult} />
         </UploadInputInnerDiv>
 
         <UploadInventoryAttrDiv>
@@ -125,7 +138,11 @@ const UploadInventory = () => {
             attrs.map((attr) => (
               <UploadAttrInputInnerDiv key={attr.id}>
                 <UploadLabel>{attr.name}</UploadLabel>
-                <InventoryAttrItem id={attr.id} getResult={getAttrResult} />
+                <InventoryAttrItem
+                  id={attr.id}
+                  name={attr.name}
+                  getResult={getAttrResult}
+                />
               </UploadAttrInputInnerDiv>
             ))}
         </UploadInventoryAttrDiv>

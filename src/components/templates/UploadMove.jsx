@@ -20,6 +20,8 @@ import axios from "axios";
 import { APIURL } from "../../config/key";
 import { getCookie } from "../../config/cookie";
 import Caution from "../organisms/common/Caution";
+import ProductSelect from "../atomics/select/ProductSelect";
+import { filterType } from "../../data";
 
 const UploadMove = ({ type }) => {
   const param = useParams();
@@ -39,6 +41,7 @@ const UploadMove = ({ type }) => {
 
   const [selectProducts, setSelectProducts] = useState([]);
   const [productId, setProductId] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const getSelectProduct = (obj) => {
     const findIdx = selectProducts.findIndex(
@@ -64,6 +67,10 @@ const UploadMove = ({ type }) => {
   const deleteProductId = (obj) => {
     setProductId(productId.filter((i) => i !== obj));
     // console.log(productId);
+  };
+
+  const getResult = (obj) => {
+    setFilter(obj);
   };
 
   const getBodyResult = (obj) => {
@@ -147,21 +154,30 @@ const UploadMove = ({ type }) => {
             <ProductFilterInput name="product" getResult={getBodyResult} />
           </UploadInputInnerDiv>
           {productToggle ? (
-            <ProductAddListDiv>
-              {products &&
-                products.map((product) => (
-                  <ProductItem
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    img={product.imageUrl}
-                    barcode={product.barcode}
-                    places={product.places}
-                    getResult={getProductId}
-                    setToggle={setProductToggle}
-                  />
-                ))}
-            </ProductAddListDiv>
+            // 제품 검색할 때
+            <>
+              <ProductSelect
+                options={filterType}
+                name="filter"
+                getResult={getResult}
+              />
+              <ProductAddListDiv>
+                {products &&
+                  products
+                    .filter((product) => product.attributes[1].value == filter)
+                    .map((product) => (
+                      <ProductItem
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        img={product.imageUrl}
+                        places={product.places}
+                        getResult={getProductId}
+                        setToggle={setProductToggle}
+                      />
+                    ))}
+              </ProductAddListDiv>
+            </>
           ) : (
             <ProductSelectListDiv>
               {products &&

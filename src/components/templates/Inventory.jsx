@@ -12,11 +12,18 @@ import InventoryItem from "../organisms/inventory/InventoryItem";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCookie } from "../../config/cookie";
 import usePlaceList from "../../hooks/usePlaceList";
+import Pagination from "../organisms/common/Pagination";
 
 const Inventory = () => {
   const [searchText, setSearchText] = useState("");
   const [products, setProducts] = useState([]);
-
+  const [page, setPage] = useState(1);
+  const [meta, setMeta] = useState({
+    total: 0,
+    first: false,
+    last: false
+  });
+  //console.log(products);
   const param = useParams();
   const teamId = param.team_id;
 
@@ -26,20 +33,24 @@ const Inventory = () => {
   const sendRequest = async () => {
     let query = "";
     if (searchText) {
-      query = `?value=${searchText}`;
+      query = `&value=${searchText}`;
     }
     const res = await axios.get(
-      `${APIURL}/api/teams/${teamId}/products/page${query}`,
+      `${APIURL}/api/teams/${teamId}/products/page?page=${page - 1}${query}`,
       {
         headers: {
           Authorization: `Bearer ${getCookie("key")}`,
         },
       }
     );
-    // console.log(`${APIURL}/api/teams/${teamId}/products/page${query}`)
-    // console.log(res);
+     console.log(res);
     if (res.status === 200) {
       setProducts(res.data.content);
+      setMeta({
+        total: res.data.totalElements,
+        first: res.data.first,
+        last: res.data.last
+      });
     } else {
       console.log("Error");
     }
@@ -47,7 +58,7 @@ const Inventory = () => {
 
   useEffect(() => {
     sendRequest();
-  }, [searchText]);
+  }, [searchText, page]);
 
   return (
     <>
@@ -79,6 +90,7 @@ const Inventory = () => {
               />
             ))}
         </InventoryListDiv>
+        <Pagination meta={meta} page={page} setPage={setPage}/>
       </FilterInventoryDiv>
     </>
   );

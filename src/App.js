@@ -21,6 +21,7 @@ import Setting from "./components/templates/Setting";
 import SettingRole from "./components/templates/SettingRole";
 import SettingInvite from "./components/templates/SettingInvite";
 import PlaceInventory from "./components/templates/PlaceInventory";
+import UpdateProduct from "./components/templates/UpdateProduct";
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
           {/* 등록 페이지 */}
           <Route path="upload/:team_id" element={<ShowUpload />}>
             <Route path="inventory" element={<UploadInventory />} />
+            <Route path="inventory/:product_id/update" element={<UpdateProduct/>}/>
             <Route path="in" element={<UploadIn type="IN" />} />
             <Route path="out" element={<UploadOut type="OUT" />} />
             <Route path="move" element={<UploadMove type="MOVE" />} />

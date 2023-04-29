@@ -20,6 +20,30 @@ export const MainPageInnerDiv = styled.div`
 
 // Common ======================================
 
+export const PaginationNav = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin: 16px;
+`;
+
+export const PaginationBtn = styled.div`
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 0;
+  background: black;
+  color: white;
+  font-size: 1rem;
+
+  &[disabled] {
+    background: grey;
+    cursor: revert;
+    transform: revert;
+  }
+`;
+
 export const HorizontalLine = styled.hr`
   width: 90%;
   maring-bottom: 30px;
@@ -259,7 +283,7 @@ export const PlaceInventoryHeaderDiv = styled.div`
   padding: 10px 0;
   border-bottom: 2px solid black;
   margin-bottom: 10px;
-`
+`;
 
 export const HeaderDiv = styled.div`
   box-sizing: border-box;
@@ -294,6 +318,11 @@ export const HeaderDiv = styled.div`
         border-color: #f5a623;
         color: #f5a623;
       `;
+    } else if (props.type === "PRODUCT" || props.type === "product") {
+      return css`
+        border-color: black;
+        color: black;
+      `;
     }
   }}
 `;
@@ -310,7 +339,7 @@ export const HeaderButton = styled.div`
   padding: 5px 10px;
   background-color: black;
   position: fixed;
-  right: 20px;
+  right: 10px;
   top: 10px;
   color: white;
 `;
@@ -570,15 +599,15 @@ export const PlaceInventoryDiv = styled.div`
   align-items: center;
   margin-bottom: 20px;
   width: 100%;
-`
+`;
 export const PlaceInventoryItemDiv = styled.div`
   border: 2px solid black;
   padding: 5px 20px;
   border-radius: 8px;
   font-size: 20px;
   width: calc(100% / 3);
-  text-align : center;
-`
+  text-align: center;
+`;
 
 export const FilterInventoryDiv = styled.div`
   display: flex;
@@ -673,7 +702,7 @@ export const InventoryItemDiv = styled.div`
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 `;
 
 export const InventoryItemImg = styled.img`
@@ -682,7 +711,7 @@ export const InventoryItemImg = styled.img`
 `;
 
 export const InventoryItemInfoDiv = styled.div`
-  width: 67%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -692,7 +721,7 @@ export const InventoryItemInfoDiv = styled.div`
 
 export const InventoryItemInfoInnerDiv = styled.div`
   display: flex;
-  width: 50%;
+  width: 100%;
   align-items: center;
   font-size: 20px;
 `;
@@ -737,7 +766,7 @@ export const ProductItemTitle = styled.div`
   padding: 5px;
   background-color: #eee;
   border-radius: 12px;
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   margin-right: 10px;
@@ -774,20 +803,33 @@ export const AttrAddButton = styled.div`
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 `;
 
+export const AttrInputInnerDiv = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 80%;
+  margin: 5px 0;
+`;
+
 export const AttrInputDiv = styled.div`
   box-sizing: border-box;
   border: 2px solid black;
   display: flex;
-  height: 60px;
+  flex-direction: column;
+  min-height: 160px;
   background-color: #eee;
   border-radius: 8px;
   padding: 5px 15px;
-  justify-content: space-between;
 `;
 
+export const AttrLabel = styled.div`
+  text-align: end;
+  font-size: 16px;
+  width: 25%;
+  margin-right: 25px;
+`;
 
 export const Attrinput = styled.input`
-  width: 70%;
   line-height: normal;
   padding: 0.8em 0.8em;
   background-color: white;
@@ -796,6 +838,7 @@ export const Attrinput = styled.input`
   &:focus {
     outline: none;
   }
+  width: 40%;
 `;
 
 export const Attrselect = styled.select`
@@ -842,10 +885,43 @@ export const AttrTypeItemDiv = styled.div`
 export const AttrInputButton = styled.div`
   background-color: black;
   color: white;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border-radius: 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
+`;
+
+export const AttrValueBtn = styled.div`
+  background-color: #4f67ff;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  box-sizing: border-box;
+`;
+
+export const AttrValueTagListDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px 0;
+`;
+
+export const AttrValueTagDiv = styled.div`
+  font-size: 12px;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
 `;
 
 export const AttrItemDiv = styled.div`
@@ -902,13 +978,15 @@ export const UploadAttrInputInnerDiv = styled.div`
   align-items: center;
   border-bottom: 1px solid gray;
   padding: 10px 10px;
+  width: 100%;
 `;
 
 export const UploadAttrInputDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90%;
+  align-items: end;
+  width: 100%;
 `;
 
 export const Uploadinput = styled.input`
@@ -995,6 +1073,15 @@ export const UploadInventoryAttrHeaderDiv = styled.div`
   border-bottom: 2px solid black;
 `;
 
+export const UploadInventoryPrevAttrDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+  border: 2px solid black;
+  margin: 10px 0;
+  font-size: 12px;
+`;
+
 export const UploadInventoryAttrHeaderBtn = styled.div`
   color: #4f67ff;
   font-size: 12px;
@@ -1029,7 +1116,6 @@ export const ProductAddDiv = styled.div`
 export const ProductAddListDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
-  max-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1219,7 +1305,7 @@ export const HistoryDetailTag = styled.div`
 export const HistoryDetailItemDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 100px;
+  height: 140px;
   background-color: #eee;
   border-radius: 8px;
   padding: 10px;

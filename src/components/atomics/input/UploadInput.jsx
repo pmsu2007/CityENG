@@ -2,7 +2,7 @@ import { Uploadinput } from "../../../styledComponents";
 import { useState } from "react";
 
 const UploadInput = ({ ...props }) => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState(props.value);
 
   return (
     <>

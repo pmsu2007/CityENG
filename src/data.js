@@ -10,6 +10,7 @@ export const uploadHeader = [
   { keyword: "out", text: "출고서" },
   { keyword: "move", text: "재고 이동" },
   { keyword: "adjust", text: "조정서" },
+  { keyword: "update", text: "제품 수정"}
 ];
 
 export const typeData = [
@@ -41,3 +42,4 @@ export const permissionType = [
   { type: "PRODUCT", name: "제품 등록" },
 ];
 
+export const filterType = ["일반보일러","콘덴싱보일러","전기온수기", "가스온수기", "업소용"];

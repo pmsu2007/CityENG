@@ -28,11 +28,11 @@ const HistoryDetailItem = ({ id, fromQuantity, toQuantity, type }) => {
             <div style={{ fontSize: "20px", marginBottom: "5px", marginRight: "30px" }}>
               {product && product.name}
             </div>
-            <div style={{ fontSize: "18px", marginBottom: "5px" }}>
+          </InventoryItemInfoInnerDiv>
+          <div style={{ fontSize: "16px", marginBottom: "5px" }}>
               {product &&
                 `${product.attributes.map((attribute) => attribute.value)}`}
             </div>
-          </InventoryItemInfoInnerDiv>
           <InventoryItemQuantityDiv>{`${fromQuantity} → ${convertQuantity(
             toQuantity,
             fromQuantity

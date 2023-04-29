@@ -1,4 +1,4 @@
-import { HeaderDiv, HeaderTitle, HeaderButton } from "../../../styledComponents";
+import { HeaderDiv, HeaderTitle } from "../../../styledComponents";
 
 const Header = ({text, type}) => {
   return (

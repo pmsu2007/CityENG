@@ -20,6 +20,8 @@ import axios from "axios";
 import { APIURL } from "../../config/key";
 import Caution from "../organisms/common/Caution";
 import { getCookie } from "../../config/cookie";
+import ProductSelect from "../atomics/select/ProductSelect";
+import { filterType } from "../../data";
 
 const UploadOut = ({ type }) => {
   const param = useParams();
@@ -38,6 +40,7 @@ const UploadOut = ({ type }) => {
 
   const [selectProducts, setSelectProducts] = useState([]);
   const [productId, setProductId] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const getSelectProduct = (obj) => {
     const findIdx = selectProducts.findIndex(
@@ -45,8 +48,8 @@ const UploadOut = ({ type }) => {
     );
     if (findIdx >= 0) {
       let copy = [...selectProducts];
-      copy[findIdx].quantity = obj.quantity
-      copy[findIdx].toQuantity = obj.toQuantity
+      copy[findIdx].quantity = obj.quantity;
+      copy[findIdx].toQuantity = obj.toQuantity;
       setSelectProducts(copy);
     } else {
       setSelectProducts([...selectProducts, obj]);
@@ -58,6 +61,10 @@ const UploadOut = ({ type }) => {
       setProductId([...productId, obj]);
     }
     // console.log(productId);
+  };
+
+  const getResult = (obj) => {
+    setFilter(obj);
   };
 
   const deleteProductId = (obj) => {
@@ -79,18 +86,21 @@ const UploadOut = ({ type }) => {
       memo: body.memo,
       products: selectProducts,
     });
-    const res = await axios.post(`${APIURL}/api/teams/${teamId}/pending`, {
-      id: body.place,
-      type: type,
-      createdAt: body.createdAt,
-      memo: body.memo,
-      products: selectProducts,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${getCookie("key")}`,
+    const res = await axios.post(
+      `${APIURL}/api/teams/${teamId}/pending`,
+      {
+        id: body.place,
+        type: type,
+        createdAt: body.createdAt,
+        memo: body.memo,
+        products: selectProducts,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
 
     if (res.status === 200) {
       navigate(`/team/${teamId}/inventory`);
@@ -107,7 +117,7 @@ const UploadOut = ({ type }) => {
   return (
     <>
       <UploadInputDiv>
-        <Caution/>
+        <Caution />
         <UploadInputInnerDiv>
           <UploadLabel>위치</UploadLabel>
           <UploadSelect
@@ -135,21 +145,31 @@ const UploadOut = ({ type }) => {
             <ProductFilterInput name="product" getResult={getBodyResult} />
           </UploadInputInnerDiv>
           {productToggle ? (
-            <ProductAddListDiv>
-              {products &&
-                products.map((product) => (
-                  <ProductItem
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    img={product.imageUrl}
-                    barcode={product.barcode}
-                    places={product.places}
-                    getResult={getProductId}
-                    setToggle={setProductToggle}
-                  />
-                ))}
-            </ProductAddListDiv>
+            // 제품 검색할 때
+            <>
+              <ProductSelect
+                options={filterType}
+                name="filter"
+                getResult={getResult}
+              />
+              <ProductAddListDiv>
+                {products &&
+                  products
+                    .filter((product) => product.attributes[1].value == filter)
+                    .map((product) => (
+                      <ProductItem
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        img={product.imageUrl}
+                        barcode={product.barcode}
+                        places={product.places}
+                        getResult={getProductId}
+                        setToggle={setProductToggle}
+                      />
+                    ))}
+              </ProductAddListDiv>
+            </>
           ) : (
             <ProductSelectListDiv>
               {products &&
