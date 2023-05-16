@@ -11,11 +11,11 @@ import { useParams } from "react-router-dom";
 import { getCookie } from "../../config/cookie";
 import usePlaceList from "../../hooks/usePlaceList";
 import ProductSelect from "../atomics/select/ProductSelect";
-import { filterType } from "../../data";
 
 const PlaceInventory = () => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("");
+  const [values, setValues] = useState([]);
 
   const param = useParams();
   const teamId = param.team_id;
@@ -36,7 +36,6 @@ const PlaceInventory = () => {
       }
     );
 
-    console.log(res.data);
     if (res.status === 200) {
       setProducts(res.data.content);
     } else {
@@ -44,8 +43,23 @@ const PlaceInventory = () => {
     }
   };
 
+  const sendAttrValueRequest = async () => {
+    const res = await axios.get(`${APIURL}/api/teams/${teamId}/attrs`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
+    console.log(res);
+    if (res.status === 200) {
+      setValues(res.data);
+    } else {
+      console.log("속성값 조회 실패");
+    }
+  };
+
   useEffect(() => {
     sendRequest();
+    sendAttrValueRequest();
   }, []);
 
   return (
@@ -63,7 +77,7 @@ const PlaceInventory = () => {
               );
           })}
         <ProductSelect
-          options={filterType}
+          options={values.length > 0 && values[1].values}
           name="filter"
           getResult={getResult}
         />

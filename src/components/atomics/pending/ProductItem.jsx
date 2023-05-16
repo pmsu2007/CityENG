@@ -1,6 +1,5 @@
 import {
   InventoryItemDiv,
-  InventoryItemImg,
   InventoryItemInfoDiv,
   InventoryItemQuantityDiv,
 } from "../../../styledComponents";
@@ -15,14 +14,13 @@ const ProductItem = ({ id, name, img, places, getResult, setToggle }) => {
       <InventoryItemDiv
         onClick={(e) => {
           getResult(id);
-          setToggle(!e)
+          setToggle(!e);
         }}
       >
-        <InventoryItemImg img={img} />
         <InventoryItemInfoDiv>
-            <div>{name}</div>
-          <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
+          <div>{name}</div>
         </InventoryItemInfoDiv>
+        <InventoryItemQuantityDiv>{quantity}</InventoryItemQuantityDiv>
       </InventoryItemDiv>
     </>
   );

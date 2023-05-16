@@ -11,7 +11,6 @@ import UploadSelect from "../atomics/select/UploadSelect";
 import { useNavigate, useParams } from "react-router-dom";
 import usePlaceList from "../../hooks/usePlaceList";
 import { useState } from "react";
-import useProductList from "../../hooks/useProductList";
 import ProductFilterInput from "../atomics/input/ProductFilterInput";
 import ProductItem from "../atomics/pending/ProductItem";
 import ProductSelectItem from "../atomics/pending/ProudctSelectItem";
@@ -21,7 +20,7 @@ import { APIURL } from "../../config/key";
 import { getCookie } from "../../config/cookie";
 import Caution from "../organisms/common/Caution";
 import ProductSelect from "../atomics/select/ProductSelect";
-import { filterType } from "../../data";
+import { useEffect } from "react";
 
 const UploadIn = ({ type }) => {
   const param = useParams();
@@ -29,7 +28,6 @@ const UploadIn = ({ type }) => {
   const navigate = useNavigate();
 
   const places = usePlaceList(teamId);
-  const products = useProductList(teamId);
 
   const [productToggle, setProductToggle] = useState(false);
   const [body, setBody] = useState({
@@ -38,9 +36,34 @@ const UploadIn = ({ type }) => {
     createdAt: "",
   });
 
+  const [products, setProducts] = useState([]);
+
+  const sendProductRequest = async () => {
+    const res = await axios.get(
+      `${APIURL}/api/teams/${teamId}/places/${body.place}/products/page`,
+      {
+        headers: {
+          Authorization: `Bearer ${getCookie("key")}`,
+        },
+      }
+    );
+    
+
+    if (res.status === 200) {
+      setProducts(res.data.content);
+    } else {
+      console.log("Error");
+    }
+  };
+
+  useEffect(() => {
+    sendProductRequest();
+  }, [body.place]);
+
   const [selectProducts, setSelectProducts] = useState([]);
   const [productId, setProductId] = useState([]);
   const [filter, setFilter] = useState("");
+  const [values, setValues] = useState([]);
 
   const getSelectProduct = (obj) => {
     const findIdx = selectProducts.findIndex(
@@ -101,9 +124,27 @@ const UploadIn = ({ type }) => {
     }
   };
 
+  const sendAttrValueRequest = async () => {
+    const res = await axios.get(`${APIURL}/api/teams/${teamId}/attrs`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("key")}`,
+      },
+    });
+    console.log(res);
+    if (res.status === 200) {
+      setValues(res.data);
+    } else {
+      console.log("속성값 조회 실패");
+    }
+  };
+
   const onSubmit = () => {
     sendRequest();
   };
+
+  useEffect(() => {
+    sendAttrValueRequest();
+  }, [])
 
   return (
     <>
@@ -139,7 +180,7 @@ const UploadIn = ({ type }) => {
             // 제품 검색할 때
             <>
               <ProductSelect
-                options={filterType}
+                options={values.length > 0 && values[1].values}
                 name="filter"
                 getResult={getResult}
               />

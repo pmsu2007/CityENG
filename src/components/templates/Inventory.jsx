@@ -1,8 +1,10 @@
 import {
   FilterInventoryDiv,
   InventoryListDiv,
+  PlaceAddButton,
   PlaceInventoryDiv,
   PlaceInventoryItemDiv,
+  ProductAddBtn,
 } from "../../styledComponents";
 import InventoryFilter from "../organisms/inventory/InventoryFilter";
 import { useEffect, useState } from "react";
@@ -77,6 +79,11 @@ const Inventory = () => {
               </PlaceInventoryItemDiv>
             ))}
         </PlaceInventoryDiv>
+        <ProductAddBtn
+          onClick={() => {
+            navigate(`/upload/${teamId}/inventory`)
+          }}
+        >제품 등록 +</ProductAddBtn>
         <InventoryListDiv>
           {products &&
             products.map((product) => (

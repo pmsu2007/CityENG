@@ -694,7 +694,7 @@ export const InventoryListDiv = styled.div`
 export const InventoryItemDiv = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 80px;
+  height: 50px;
   background-color: #eee;
   border-radius: 8px;
   padding: 10px;
@@ -737,6 +737,20 @@ export const ProductDiv = styled.div`
   margin: 70px 0;
   display: flex;
   flex-direction: column;
+`;
+
+export const ProductAddBtn = styled.div`
+  width: 100%;
+  margin-bottom: 10px;
+  height: 35px;
+  box-sizing: border-box;
+  background-color: #484848;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 `;
 
 export const ProductListDiv = styled.div`
@@ -945,7 +959,7 @@ export const AttrItemInnerDiv = styled.div`
   display: flex;
   jusitify-content: center;
   align-items: center;
-`
+`;
 
 export const AttrItemNameDiv = styled.div`
   width: 40%;

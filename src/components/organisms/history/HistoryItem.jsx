@@ -35,6 +35,7 @@ const HistoryItem = ({ id, type, memo, createdAt, products }) => {
   const goDetail = () => {
     navigate(`${id}`);
   };
+  
   return (
     <>
       {products[0].productId === null ? (

@@ -30,8 +30,8 @@ const Login = () => {
       password: pwd
     }
 
-    const res = await axios.post(`${APIURL}/api/signin`, body);
-    console.log(res)
+    const res = await axios.post(`${APIURL}/api/signin`, body); 
+    
     if (res.status === 200) {
       setCookie("key", res.data.apikey)
       navigate('/teams');
